@@ -8,7 +8,7 @@ export const LiveTeamDisplay = () => {
           <TeamInfo />
           <TeamInfo />
         </div>
-        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[calc(100%-6px)] rounded-full border-[0.5px] border-solid border-[#C2DBFF] backdrop-blur-[2.5px]'></div>
+        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[calc(100%-6px)] rounded-full border-[0.5px] border-solid border-[#C2DBFF] backdrop-blur-[2.5px]' />
       </div>
     </div>
   );
