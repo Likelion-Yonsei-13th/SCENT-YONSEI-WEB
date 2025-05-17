@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
 import '@/styles/typography.css';
+import { GlobalProvider } from './_common/providers/global-provider';
 
 export const metadata: Metadata = {
   title: 'Scent Of Yonsei',
@@ -29,12 +30,14 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <main
-          id='main-layout'
-          className='main-background mx-auto min-w-[360px] max-w-[420px] w-full h-screen'
-        >
-          {children}
-        </main>
+        <GlobalProvider>
+          <main
+            id='main-layout'
+            className='main-background mx-auto min-w-[320px] max-w-[500px] w-full h-screen'
+          >
+            {children}
+          </main>
+        </GlobalProvider>
       </body>
     </html>
   );

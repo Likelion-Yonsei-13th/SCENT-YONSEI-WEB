@@ -4,7 +4,7 @@ import Image from 'next/image';
 import TopMenuSheet from './top-menu-sheet';
 import { cn } from '@/app/_core/utils/cn';
 
-export default function TopBar({
+export function TopBar({
   title,
   bgClassName,
 }: {

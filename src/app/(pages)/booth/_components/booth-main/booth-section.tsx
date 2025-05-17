@@ -1,20 +1,17 @@
 'use client';
 
-import { sectionList } from '@/app/_common/constants/booth-page.constants';
+import { sectionList } from '@/app/(pages)/booth/_constants/booth-page.constants';
 import { cn } from '@/app/_core/utils/cn';
 import Image from 'next/image';
-import { useState } from 'react';
+import { sections } from '../../types/booth-union.type';
+import { parseAsStringLiteral, useQueryState } from 'nuqs';
 
-export default function BoothSection({ section }: { section: string }) {
-  const [sectionState, setSectionState] = useState(section);
+export function BoothSection() {
+  const [sectionState, setSectionState] = useQueryState(
+    'section',
+    parseAsStringLiteral(sections).withDefault('baekyang'),
+  );
 
-  const handleSectionClick = (section: string) => {
-    const newParams = new URLSearchParams(window.location.search);
-    newParams.set('section', section);
-    newParams.set('category', 'all');
-    setSectionState(section);
-    window.history.replaceState({}, '', `/booth?${newParams.toString()}`);
-  };
   return (
     <section className='px-3 pt-4 pb-3 w-full h-auto flex flex-col gap-4 bg-white rounded-[20px] flex-shrink-0'>
       <span className='flex items-center justify-around'>
@@ -23,10 +20,10 @@ export default function BoothSection({ section }: { section: string }) {
             key={section.value}
             className={cn(
               'transition-all duration-300',
-              'text-display-s cursor-pointer',
-              sectionState === section.value ? 'text-point' : 'text-gray500',
+              'text-display-s text-gray500 cursor-pointer',
+              sectionState === section.value && 'text-point',
             )}
-            onClick={() => handleSectionClick(section.value)}
+            onClick={() => setSectionState(section.value)}
           >
             {section.label}
           </button>
