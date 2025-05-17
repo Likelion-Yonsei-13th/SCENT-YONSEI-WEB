@@ -1,3 +1,121 @@
+'use client';
+
+import { cn } from '@/app/_core/utils/cn';
+import { ChevronDownIcon } from 'lucide-react';
+import { useQueryState } from 'nuqs';
+import { useCallback, useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+
+type Location = 'library' | 'dormitory' | 'outdoor';
+
+const locationList = [
+  {
+    label: '언기도 앞',
+    value: 'library',
+  },
+  {
+    label: '동문광장',
+    value: 'dormitory',
+  },
+  {
+    label: '노천극장',
+    value: 'outdoor',
+  },
+] as const;
+
 export const LocationDropdown = () => {
-  return <div>LocationDropdown</div>;
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentLocation, setCurrentLocation] = useQueryState('location', {
+    defaultValue: 'library',
+  });
+
+  const handleLocationChange = useCallback(
+    (location: Location) => {
+      setCurrentLocation(location);
+    },
+    [setCurrentLocation],
+  );
+
+  return (
+    <div className='w-full relative'>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={cn(
+          'flex items-center justify-between py-2.5 px-4 border-1 border-light200 w-full bg-white rounded-[20px]',
+        )}
+      >
+        <p className='text-label-l font-normal text-black000'>공연 위치</p>
+        <motion.div
+          animate={{
+            rotate: isOpen ? 180 : 0,
+          }}
+          transition={{
+            duration: 0.3,
+            ease: [0.645, 0.045, 0.355, 1],
+          }}
+          className={cn('text-main500')}
+        >
+          <ChevronDownIcon className='size-8' strokeWidth={1.5} />
+        </motion.div>
+      </button>
+      <hr className='w-full border-gray300 absolute top-13' />
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{
+              height: 'calc(100% - 36px)',
+              opacity: 1,
+              transition: {
+                height: {
+                  duration: 0.3,
+                  ease: [0.645, 0.045, 0.355, 1],
+                },
+                opacity: {
+                  duration: 0.2,
+                  delay: 0.1,
+                  ease: [0.645, 0.045, 0.355, 1],
+                },
+              },
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+              transition: {
+                height: {
+                  duration: 0.3,
+                  ease: [0.645, 0.045, 0.355, 1],
+                },
+                opacity: {
+                  duration: 0.2,
+                  delay: 0.1,
+                  ease: [0.645, 0.045, 0.355, 1],
+                },
+              },
+            }}
+            className='bg-white -mt-5 pt-9 overflow-hidden border-1 border-light200 rounded-b-[20px] border-t-0 p-4'
+          >
+            <div className='w-full flex flex-col items-center justify-center gap-5'>
+              <div className='flex gap-6 w-full items-center justify-center'>
+                {locationList.map(location => (
+                  <button
+                    key={location.value}
+                    onClick={() => handleLocationChange(location.value)}
+                    className={cn(
+                      'text-headline-l font-semibold text-gray500 transition-colors duration-300',
+                      location.value === currentLocation && 'text-point',
+                    )}
+                  >
+                    {location.label}
+                  </button>
+                ))}
+              </div>
+              <div className='rounded-[10px] bg-gray-300 w-full h-[215px]' />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 };
