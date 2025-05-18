@@ -29,7 +29,7 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
 
   return (
     <Link href={`/notice/${notice.noticeId}`}>
-      <div className='flex items-center justify-between bg-white rounded-2xl px-4 py-3 shadow-md'>
+      <div className='flex items-center justify-between  w-[327px] h-[54px] ml-[30px] bg-white rounded-2xl px-4 py-3 shadow-md'>
         {/* 왼쪽 아이콘 or 이미지 */}
         <div className='w-10 h-10 rounded-md flex items-center justify-center shrink-0'>
           {notice.importance ? (
