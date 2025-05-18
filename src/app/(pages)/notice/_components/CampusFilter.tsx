@@ -1,27 +1,40 @@
 'use client';
 
-import { useState } from 'react';
+type CampusFilterProps = {
+  selected: string;
+  onSelect: (campus: string) => void;
+};
 
 const campuses = ['블루런', '국제캠', '신촌캠'];
 
-export default function CampusFilter() {
-  const [selected, setSelected] = useState('블루런');
+export default function CampusFilter({
+  selected,
+  onSelect,
+}: CampusFilterProps) {
   return (
-    <div className='flex gap-[12px] mt-[150px] ml-[25.5px] w-[324px] h-[44px]'>
-      {campuses.map(campus => (
-        <button
-          key={campus}
-          onClick={() => setSelected(campus)}
-          className={`w-[100px] rounded-[100px] px-[16px] pt-[10px] pb-[10px]  transition
-            ${
-              selected === campus
-                ? 'bg-[rgba(7,98,173,1)] text-[rgba(255,255,255,1)]'
-                : 'bg-[rgba(223,244,255,1)] text-[rgba(25,29,31,1)]'
-            }`}
-        >
-          {campus}
-        </button>
-      ))}
+    <div className='flex justify-center gap-3 mt-[150px] w-full'>
+      {campuses.map(campus => {
+        const isSelected = selected === campus;
+
+        return (
+          <button
+            key={campus}
+            onClick={() => onSelect(campus)}
+            className={`
+              w-[100px] h-[38px] rounded-full transition
+              text-sm leading-[18px] font-[Pretendard]
+              truncate text-center
+              ${
+                isSelected
+                  ? 'font-semibold bg-[rgba(7,98,173,1)] text-white'
+                  : 'font-normal bg-white text-[rgba(25,29,31,1)] border border-[rgba(223,244,255,1)]'
+              }
+            `}
+          >
+            {campus}
+          </button>
+        );
+      })}
     </div>
   );
 }
