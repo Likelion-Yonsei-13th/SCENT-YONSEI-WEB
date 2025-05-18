@@ -39,12 +39,12 @@ export interface ShowDetail {
   showId: number;
   title: string;
   name: string;
-  instagram?: string;
+  instagram: string;
   section: string;
   start_at: string;
   finish_at: string;
-  description?: string;
-  photo?: string;
+  description: string;
+  photo: string;
 }
 
 export type ShowDetailResponse = ApiResponse<ShowDetail>;
@@ -53,12 +53,12 @@ export interface ShowModel {
   showId: number;
   title: string;
   name: string;
-  instagram?: string;
+  instagram: string;
   section: string;
   start_at: string;
   finish_at: string;
-  description?: string;
-  photo?: string;
+  description: string;
+  photo: string;
   day: number;
   isLive: boolean;
 }

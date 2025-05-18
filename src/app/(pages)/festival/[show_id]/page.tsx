@@ -6,6 +6,7 @@ import {
   LocationIcon,
   TimeIcon,
 } from '../_assets/icons';
+import { InstagramInfoBadge } from './_components/instagram-info-badge';
 
 const FestivalShowPage = async ({
   params,
@@ -27,12 +28,7 @@ const FestivalShowPage = async ({
       />
       <div className='rounded-[20px] bg-white000 px-6 py-8 flex flex-col gap-6 w-full'>
         <div className='flex flex-col gap-1'>
-          <div className='flex items-center gap-1'>
-            <InstagramIcon />
-            <p className='text-label-s text-gray600 font-normal leading-[18px] px-2 py-0.5 bg-gray300 rounded-full'>
-              {result.data.instagram}
-            </p>
-          </div>
+          <InstagramInfoBadge instagram={result.data.instagram} />
           <div className='flex items-center gap-1'>
             <CalendarIcon />
             <p className='text-label-l text-gray600 !font-semibold leading-[18px]'>
