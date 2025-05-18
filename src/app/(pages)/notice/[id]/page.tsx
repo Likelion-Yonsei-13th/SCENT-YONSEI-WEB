@@ -104,7 +104,7 @@ export default function NoticeDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[url('/img/main-background.jpg')] bg-cover bg-no-repeat pt-20 pb-10">
+    <div className="min-h-screen bg-[url('/img/main-background.jpg')] bg-cover bg-no-repeat pt-20 pb-1">
       {/* 🔹 상단 TopBar */}
       <TopBar title='공지사항' bgClassName='bg-white/20 backdrop-blur-md p-4' />
 
