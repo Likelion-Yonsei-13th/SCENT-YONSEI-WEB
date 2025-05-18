@@ -1,8 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { Bell } from 'lucide-react';
-import Image from 'next/image';
 
 type Notice = {
   noticeId: number;
@@ -34,14 +32,18 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
   return (
     <Link href={`/notice/${notice.noticeId}`}>
       <div
-        className={`flex items-center justify-between w-[327px] border border-[rgba(223,244,255,1)] ${
+        className={`flex items-center justify-between w-full border border-[rgba(223,244,255,1)] ${
           hasImage ? 'h-[76px]' : 'h-[54px]'
-        } ml-[30px] bg-white rounded-2xl px-4 py-3 shadow-md`}
+        } bg-white rounded-2xl px-4 py-3 shadow-md`}
       >
         {/* 왼쪽 아이콘 or 이미지 */}
         <div className='w-10 h-10 rounded-md flex items-center justify-center shrink-0'>
           {notice.importance ? (
-            <Bell className='w-5 h-5 text-blue-500' />
+            <img
+              src='/svg/notice/bell.svg'
+              alt='공지아이콘'
+              className='w-7 h-7'
+            />
           ) : hasImage && notice.thumbnailUrl ? (
             <img
               src={notice.thumbnailUrl}

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import TopBar from '@/app/_common/components/top-bar';
+import { TopBar } from '@/app/_common/components/top-bar';
 import CampusFilter from './_components/CampusFilter';
 import NoticeList from './_components/NoticeList';
 

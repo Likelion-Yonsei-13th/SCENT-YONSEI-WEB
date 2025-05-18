@@ -12,7 +12,7 @@ export default function CampusFilter({
   onSelect,
 }: CampusFilterProps) {
   return (
-    <div className='flex justify-start gap-3 px-[26px] mt-[150px] w-full'>
+    <div className='flex justify-center gap-3 w-full mt-[150px]'>
       {campuses.map(campus => {
         const isSelected = selected === campus;
 
@@ -21,7 +21,7 @@ export default function CampusFilter({
             key={campus}
             onClick={() => onSelect(campus)}
             className={`
-              w-[100px] h-[38px] rounded-full transition
+              w-[150px] h-[45px] rounded-full transition
               text-sm leading-[18px] font-[Pretendard]
               truncate text-center
               ${
