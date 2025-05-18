@@ -9,7 +9,7 @@ type Notice = {
   category: string;
   created_at: string;
   updated_at: string;
-  thumbnailUrl?: string;
+  photoUrl?: string | null; // ✅ API 필드에 맞게 이름 변경
 };
 
 type NoticeItemProps = {
@@ -25,7 +25,9 @@ const formatDate = (isoString: string) => {
 
 export default function NoticeItem({ notice }: NoticeItemProps) {
   const formattedDate = formatDate(notice.updated_at);
-  const hasImage = Boolean(notice.thumbnailUrl);
+
+  const hasImage =
+    typeof notice.photoUrl === 'string' && notice.photoUrl !== '';
   const isTextOnly = !hasImage && !notice.importance;
 
   return (
@@ -40,7 +42,7 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
           <div className='w-10 h-10 rounded-md flex items-center justify-center shrink-0'>
             {hasImage ? (
               <img
-                src={notice.thumbnailUrl}
+                src={notice.photoUrl!}
                 alt='공지 이미지'
                 width={40}
                 height={40}
@@ -50,7 +52,7 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
               <img
                 src='/svg/notice/bell.svg'
                 alt='공지아이콘'
-                className='w-7 h-7'
+                className='w-6 h-6'
               />
             )}
           </div>
