@@ -12,7 +12,7 @@ export default function CampusFilter() {
         <button
           key={campus}
           onClick={() => setSelected(campus)}
-          className={`w-[100px] rounded-[100px] px-[16px] pt-[10px] pb-[10px] font-semibold transition
+          className={`w-[100px] rounded-[100px] px-[16px] pt-[10px] pb-[10px]  transition
             ${
               selected === campus
                 ? 'bg-[rgba(7,98,173,1)] text-[rgba(255,255,255,1)]'
