@@ -25,7 +25,8 @@ export async function getBoothList(params: BoothListParams): Promise<Booth> {
     if (!response.ok) {
       throw new Error('Failed to fetch booth list');
     }
-    return response.json();
+    const data: Booth = await response.json();
+    return data;
   } catch (error) {
     console.error(error);
     throw error;
@@ -52,7 +53,8 @@ export async function getBoothDetail(
     if (!response.ok) {
       throw new Error('Failed to fetch booth detail');
     }
-    return response.json();
+    const data: BoothDetail = await response.json();
+    return data;
   } catch (error) {
     console.error(error);
     throw error;

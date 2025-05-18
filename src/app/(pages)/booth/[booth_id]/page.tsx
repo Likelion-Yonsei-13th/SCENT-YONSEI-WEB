@@ -1,4 +1,4 @@
-// export const revalidate = 60;
+export const revalidate = 60;
 
 import { TopBar } from '@/app/_common/components/top-bar';
 import { ImgCarousel } from '../_components/booth-detail/img-carousel';
@@ -14,7 +14,7 @@ interface BoothDetailPageProps {
 export default async function BoothDetailPage({
   params,
 }: BoothDetailPageProps) {
-  const { booth_id } = await params;
+  const { booth_id } = params;
   //   const boothDetail = await getBoothDetail(booth_id, { category: 'booth' });
 
   return (

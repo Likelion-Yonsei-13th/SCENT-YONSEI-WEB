@@ -16,13 +16,13 @@ export function SearchBar() {
   const [debouncedValue] = useDebounce(inputValue, 500);
   useEffect(() => {
     if (debouncedValue !== searchQuery) {
-      setSearchQuery(debouncedValue);
+      void setSearchQuery(debouncedValue);
     }
   }, [debouncedValue]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      setSearchQuery(inputValue);
+      void setSearchQuery(inputValue);
     }
   };
 

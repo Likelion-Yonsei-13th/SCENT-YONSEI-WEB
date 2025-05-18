@@ -7,7 +7,7 @@ import { BoothListKey, BoothListRecord } from '../../types/booth-union.type';
 export function BoothList({ record }: { record: Partial<BoothListRecord> }) {
   const { day, section, category, search } = useBoothQueryParams();
 
-  const key = `${day}-${section}-${category}` as BoothListKey;
+  const key: BoothListKey = `${day}-${section}-${category}`;
   const boothData = record[key];
 
   const filteredBoothData =
