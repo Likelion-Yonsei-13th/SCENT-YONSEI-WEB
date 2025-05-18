@@ -29,6 +29,7 @@ const dummyNoticeList = [
     category: '블루런',
     created_at: '2025-05-26T18:30:00',
     updated_at: '2025-05-27T14:30:00',
+    thumbnailUrl: '/img/scent-logo.jpg',
   },
   {
     noticeId: 4,
@@ -45,6 +46,7 @@ const dummyNoticeList = [
     category: '신촌캠',
     created_at: '2025-05-26T18:30:00',
     updated_at: '2025-05-27T14:30:00',
+    thumbnailUrl: 'https://via.placeholder.com/40',
   },
   {
     noticeId: 6,
