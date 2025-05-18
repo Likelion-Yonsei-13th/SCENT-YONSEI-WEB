@@ -46,7 +46,6 @@ const dummyNoticeList = [
     category: '신촌캠',
     created_at: '2025-05-26T18:30:00',
     updated_at: '2025-05-27T14:30:00',
-    thumbnailUrl: 'https://via.placeholder.com/40',
   },
   {
     noticeId: 6,
@@ -63,6 +62,33 @@ const dummyNoticeList = [
     category: '국제캠',
     created_at: '2025-05-25T18:30:00',
     updated_at: '2025-05-25T14:30:00',
+  },
+  {
+    noticeId: 8,
+    title: '블루런 운영 장소 변경 공지',
+    importance: false,
+    category: '신촌캠',
+    created_at: '2025-05-24T18:30:00',
+    updated_at: '2025-05-24T14:30:00',
+    thumbnailUrl: '/img/scent-logo.jpg',
+  },
+  {
+    noticeId: 9,
+    title: '블루런 운영 장소 변경 공지',
+    importance: true,
+    category: '신촌캠',
+    created_at: '2025-05-29T18:30:00',
+    updated_at: '2025-05-29T14:30:00',
+    thumbnailUrl: '/img/scent-logo.jpg',
+  },
+  {
+    noticeId: 10,
+    title: 'test3',
+    importance: true,
+    category: '신촌캠',
+    created_at: '2025-05-27T18:30:00',
+    updated_at: '2025-05-27T14:30:00',
+    thumbnailUrl: '/img/scent-logo.jpg',
   },
 ];
 

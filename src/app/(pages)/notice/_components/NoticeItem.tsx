@@ -34,7 +34,7 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
   return (
     <Link href={`/notice/${notice.noticeId}`}>
       <div
-        className={`flex items-center justify-between w-[327px] ${
+        className={`flex items-center justify-between w-[327px] border border-[rgba(223,244,255,1)] ${
           hasImage ? 'h-[76px]' : 'h-[54px]'
         } ml-[30px] bg-white rounded-2xl px-4 py-3 shadow-md`}
       >
@@ -43,7 +43,7 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
           {notice.importance ? (
             <Bell className='w-5 h-5 text-blue-500' />
           ) : hasImage && notice.thumbnailUrl ? (
-            <Image
+            <img
               src={notice.thumbnailUrl}
               alt='공지 이미지'
               width={40}
