@@ -1,7 +1,7 @@
 'use client';
 
-import { useTabQueryState } from '@/app/(pages)/festival/_hooks/use-tab-query-state';
-import { tabs } from '../../constants/tabs';
+import { useDayTabQueryState } from '@/app/(pages)/festival/_hooks/use-day-tab-query-state';
+import { dayTabs } from '../../constants/tabs';
 import { cn } from '@/app/_core/utils/cn';
 
 const tabButtonClassName =
@@ -12,11 +12,11 @@ const inactiveTabButtonClassName =
   'text-black000 font-normal bg-white000 border-1 border-light200';
 
 export const Tabs = () => {
-  const { currentTab, handleTabChange } = useTabQueryState();
+  const { currentTab, handleTabChange } = useDayTabQueryState();
 
   return (
     <div className='flex justify-around gap-3 items-center text-label-l w-full'>
-      {tabs.map(tab => (
+      {dayTabs.map(tab => (
         <button
           key={tab.value}
           onClick={() => handleTabChange(tab.value)}

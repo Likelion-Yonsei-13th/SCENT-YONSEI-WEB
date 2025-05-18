@@ -1,17 +1,18 @@
 'use client';
 
 import { useQueryState } from 'nuqs';
-import { tabs, tabValues } from '../constants/tabs';
+import { dayTabs, dayTabValues } from '../constants/tabs';
 import { useCallback } from 'react';
 
-export const useTabQueryState = () => {
+export const useDayTabQueryState = () => {
   const [tab, setTab] = useQueryState('tab', {
-    defaultValue: tabs[0].value,
+    defaultValue: dayTabs[0].value,
+    clearOnDefault: false,
     history: 'replace',
   });
 
   const handleTabChange = useCallback(
-    (value: (typeof tabValues)[number]) => {
+    (value: (typeof dayTabValues)[number]) => {
       setTab(value);
     },
     [setTab],

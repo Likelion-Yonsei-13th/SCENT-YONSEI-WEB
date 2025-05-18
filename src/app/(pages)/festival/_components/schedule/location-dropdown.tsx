@@ -5,8 +5,7 @@ import { ChevronDownIcon } from 'lucide-react';
 import { useQueryState } from 'nuqs';
 import { useCallback, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-
-type Location = 'library' | 'dormitory' | 'outdoor';
+import { useLocationQueryState } from '../../_hooks/use-location-query-state';
 
 const locationList = [
   {
@@ -25,16 +24,7 @@ const locationList = [
 
 export const LocationDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentLocation, setCurrentLocation] = useQueryState('location', {
-    defaultValue: 'library',
-  });
-
-  const handleLocationChange = useCallback(
-    (location: Location) => {
-      setCurrentLocation(location);
-    },
-    [setCurrentLocation],
-  );
+  const { currentLocation, handleLocationChange } = useLocationQueryState();
 
   return (
     <div className='w-full relative'>
