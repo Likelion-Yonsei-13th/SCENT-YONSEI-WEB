@@ -1,4 +1,4 @@
-import TopBar from '@/app/_common/components/top-bar';
+import { TopBar } from '@/app/_common/components/top-bar';
 import { LiveShowDisplay } from './_components/live-team-display';
 import { Schedule } from './_components/schedule';
 import { festivalRepository } from './_repository/festival.repository';
