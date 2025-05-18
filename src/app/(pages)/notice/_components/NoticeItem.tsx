@@ -9,7 +9,7 @@ type Notice = {
   category: string;
   created_at: string;
   updated_at: string;
-  photoUrl?: string | null; // ✅ API 필드에 맞게 이름 변경
+  photoUrl?: string | null;
 };
 
 type NoticeItemProps = {

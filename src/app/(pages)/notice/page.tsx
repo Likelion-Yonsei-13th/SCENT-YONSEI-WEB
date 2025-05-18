@@ -53,6 +53,15 @@ const dummyNoticeList: NoticeListItem[] = [
     updated_at: '2025-05-22T18:30:00',
     photoUrl: null,
   },
+  {
+    noticeId: 6,
+    title: 'test6',
+    importance: true,
+    category: '국제캠',
+    created_at: '2025-05-26T18:30:00',
+    updated_at: '2025-05-26T18:30:00',
+    photoUrl: null,
+  },
 ];
 
 export default function Notice() {
@@ -87,7 +96,7 @@ export default function Notice() {
 
         <div className='mt-6'>
           {loading ? (
-            <p className='text-gray-400 text-sm'>불러오는 중...</p>
+            <p className='text-white text-sm'>불러오는 중...</p>
           ) : (
             <NoticeList
               noticeList={noticeList}
