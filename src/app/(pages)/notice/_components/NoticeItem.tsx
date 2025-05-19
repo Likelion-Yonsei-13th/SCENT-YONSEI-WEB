@@ -31,17 +31,17 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
   return (
     <Link href={`/notice/${notice.noticeId}`}>
       <div
-        className={`flex items-center w-full border border-[rgba(223,244,255,1)] ${
+        className={`flex w-full border border-[rgba(223,244,255,1)] ${
           hasImage ? 'h-[76px]' : 'h-[54px]'
-        } bg-white rounded-2xl px-4 py-3 shadow-md`}
+        } bg-white rounded-2xl px-4 py-3 shadow-md items-center`}
       >
         {/* 아이콘 or 이미지 */}
         {!isTextOnly && (
-          <div className='w-10 h-10 rounded-md flex items-center justify-center shrink-0'>
+          <div className='w-10 h-10 rounded-md flex items-center justify-center shrink-0 mr-3'>
             {hasImage ? (
               <img
                 src={notice.photoUrl!}
-                alt=''
+                alt='공지 이미지'
                 className='w-10 h-10 rounded-md object-cover'
               />
             ) : (
@@ -55,11 +55,7 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
         )}
 
         {/* 텍스트 + 날짜 묶음 */}
-        <div
-          className={`flex items-center justify-between ${
-            isTextOnly ? 'ml-2' : 'mx-4'
-          } flex-1`}
-        >
+        <div className='flex justify-between items-center flex-1'>
           <p
             className={`text-[16px] font-medium leading-[20px] truncate ${
               notice.importance ? 'text-[rgba(34,166,232,1)]' : 'text-black'
@@ -67,7 +63,7 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
           >
             {notice.title}
           </p>
-          <span className='text-sm text-gray-400 ml-2'>{formattedDate}</span>
+          <span className='text-sm text-gray-400 ml-3'>{formattedDate}</span>
         </div>
       </div>
     </Link>
