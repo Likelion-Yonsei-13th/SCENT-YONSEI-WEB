@@ -2,29 +2,38 @@
 
 import { cn } from '@/app/_core/utils/cn';
 import { ChevronDownIcon } from 'lucide-react';
-import { useQueryState } from 'nuqs';
-import { useCallback, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLocationQueryState } from '../../_hooks/use-location-query-state';
+import Image from 'next/image';
 
 const locationList = [
   {
     label: '언기도 앞',
-    value: 'library',
+    value: '언기도',
+    image: '/img/festival/언기도.png',
   },
   {
     label: '동문광장',
-    value: 'dormitory',
+    value: '동문광장',
+    image: '/img/festival/동문광장.png',
   },
   {
     label: '노천극장',
-    value: 'outdoor',
+    value: '노천극장',
+    image: '/img/festival/노천극장.png',
   },
 ] as const;
 
 export const LocationDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { currentLocation, handleLocationChange } = useLocationQueryState();
+
+  const currentLocationImage = useMemo(
+    () =>
+      locationList.find(location => location.value === currentLocation)!.image,
+    [currentLocation],
+  );
 
   return (
     <div className='w-full relative'>
@@ -107,7 +116,13 @@ export const LocationDropdown = () => {
                     </button>
                   ))}
                 </div>
-                <div className='rounded-[10px] bg-gray-300 w-full h-[215px]' />
+                <Image
+                  src={currentLocationImage}
+                  alt={currentLocation}
+                  width={300}
+                  height={300}
+                  className='rounded-[10px] w-full h-auto object-cover'
+                />
               </div>
             </motion.div>
           </>
