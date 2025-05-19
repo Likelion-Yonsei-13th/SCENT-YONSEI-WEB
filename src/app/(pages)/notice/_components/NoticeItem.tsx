@@ -25,13 +25,13 @@ const formatDate = (isoString: string) => {
 
 export default function NoticeItem({ notice }: NoticeItemProps) {
   const formattedDate = formatDate(notice.updated_at);
-  const hasImage = !!notice.photoUrl; // 간단하게 처리
+  const hasImage = !!notice.photoUrl;
   const isTextOnly = !hasImage && !notice.importance;
 
   return (
     <Link href={`/notice/${notice.noticeId}`}>
       <div
-        className={`flex items-center justify-between w-full border border-[rgba(223,244,255,1)] ${
+        className={`flex items-center w-full border border-[rgba(223,244,255,1)] ${
           hasImage ? 'h-[76px]' : 'h-[54px]'
         } bg-white rounded-2xl px-4 py-3 shadow-md`}
       >
@@ -41,10 +41,8 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
             {hasImage ? (
               <img
                 src={notice.photoUrl!}
-                alt={notice.title}
-                width={40}
-                height={40}
-                className='rounded-md object-cover'
+                alt=''
+                className='w-10 h-10 rounded-md object-cover'
               />
             ) : (
               <img
@@ -56,19 +54,21 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
           </div>
         )}
 
-        {/* 텍스트 */}
-        <p
-          className={`${
-            isTextOnly ? 'ml-2 flex-1' : 'flex-1 mx-4'
-          } text-[16px] leading-[20px] font-medium ${
-            notice.importance ? 'text-[rgba(34,166,232,1)]' : 'text-black'
-          }`}
+        {/* 텍스트 + 날짜 묶음 */}
+        <div
+          className={`flex items-center justify-between ${
+            isTextOnly ? 'ml-2' : 'mx-4'
+          } flex-1`}
         >
-          {notice.title}
-        </p>
-
-        {/* 날짜는 항상 표시 */}
-        <span className='text-sm text-gray-400'>{formattedDate}</span>
+          <p
+            className={`text-[16px] font-medium leading-[20px] truncate ${
+              notice.importance ? 'text-[rgba(34,166,232,1)]' : 'text-black'
+            }`}
+          >
+            {notice.title}
+          </p>
+          <span className='text-sm text-gray-400 ml-2'>{formattedDate}</span>
+        </div>
       </div>
     </Link>
   );
