@@ -25,9 +25,7 @@ const formatDate = (isoString: string) => {
 
 export default function NoticeItem({ notice }: NoticeItemProps) {
   const formattedDate = formatDate(notice.updated_at);
-
-  const hasImage =
-    typeof notice.photoUrl === 'string' && notice.photoUrl !== '';
+  const hasImage = !!notice.photoUrl; // 간단하게 처리
   const isTextOnly = !hasImage && !notice.importance;
 
   return (
@@ -38,12 +36,12 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
         } bg-white rounded-2xl px-4 py-3 shadow-md`}
       >
         {/* 아이콘 or 이미지 */}
-        {(hasImage || notice.importance) && (
+        {!isTextOnly && (
           <div className='w-10 h-10 rounded-md flex items-center justify-center shrink-0'>
             {hasImage ? (
               <img
                 src={notice.photoUrl!}
-                alt='공지 이미지'
+                alt={notice.title}
                 width={40}
                 height={40}
                 className='rounded-md object-cover'
@@ -51,7 +49,7 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
             ) : (
               <img
                 src='/svg/notice/bell.svg'
-                alt='공지아이콘'
+                alt='중요 공지 아이콘'
                 className='w-6 h-6'
               />
             )}

@@ -3,56 +3,63 @@
 import {
   NoticeListResponse,
   NoticeDetailResponse,
-} from '../interfaces/notice.interface';
+} from '@/app/_common/interfaces/notice.interface';
 
-// 공지사항 목록 조회 API
 export async function getNoticeList(
   category: string,
-  search: string = '',
 ): Promise<NoticeListResponse> {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/notice?category=${category}&search=${search}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/notice?category=${category}&search=`,
       {
         method: 'GET',
-        cache: 'no-store',
         headers: {
           'Content-Type': 'application/json',
         },
+        cache: 'no-store',
       },
     );
 
-    if (!res.ok) {
-      throw new Error('공지 목록 조회 실패');
-    }
+    if (!res.ok) throw new Error('공지 목록 조회 실패');
 
     const json = await res.json();
-    return json.data; // ✅ data 안에 notices 배열 존재
+
+    // photoUrl이 null인 경우 빈 문자열로 보완
+    const mappedNotices = json.data.notices.map((notice: any) => ({
+      ...notice,
+      photoUrl: notice.photoUrl ?? '', // null-safe 처리
+    }));
+
+    return {
+      search: json.data.search,
+      category: json.data.category,
+      notices: mappedNotices,
+    };
   } catch (error) {
     console.error(error);
     throw error;
   }
 }
 
-// 공지사항 디테일 조회 API
 export async function getNoticeDetail(
-  id: string,
+  noticeId: string,
 ): Promise<NoticeDetailResponse> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/notice/${id}`, {
-      method: 'GET',
-      cache: 'no-store',
-      headers: {
-        'Content-Type': 'application/json',
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/notice/${noticeId}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        cache: 'no-store',
       },
-    });
+    );
 
-    if (!res.ok) {
-      throw new Error('공지 디테일 조회 실패');
-    }
+    if (!res.ok) throw new Error('공지 상세 조회 실패');
 
     const json = await res.json();
-    return json.data; // ✅ data 안에 notice 정보 있음
+    return json.data;
   } catch (error) {
     console.error(error);
     throw error;
