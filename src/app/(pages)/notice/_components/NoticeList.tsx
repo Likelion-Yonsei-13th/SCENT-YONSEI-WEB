@@ -23,10 +23,11 @@ export default function NoticeList({
   noticeList,
   selectedCategory,
 }: NoticeListProps) {
-  // 선택된 카테고리의 공지만 필터링
-  const filteredNotices = noticeList.filter(
-    notice => notice.category === selectedCategory,
-  );
+  // selectedCategory가 비어있다면 전체 리스트를 사용하고, 아니라면 필터링
+  const filteredNotices =
+    selectedCategory === ''
+      ? noticeList
+      : noticeList.filter(notice => notice.category === selectedCategory);
 
   // 중요 공지는 순서 유지
   const fixedNotices = filteredNotices.filter(n => n.importance);

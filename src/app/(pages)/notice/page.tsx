@@ -8,18 +8,23 @@ import { getNoticeList } from '@/app/_common/apis/notice.api';
 import { NoticeListItem } from '@/app/_common/interfaces/notice.interface';
 
 export default function Notice() {
-  const [selectedCategory, setSelectedCategory] = useState('블루런');
+  const [selectedCategory, setSelectedCategory] = useState<string>(''); // 초기에는 전체 카테고리 의미로 빈 문자열
   const [noticeList, setNoticeList] = useState<NoticeListItem[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // 카테고리 클릭 시 토글 방식으로 설정
+  const handleSelectCategory = (category: string) => {
+    setSelectedCategory(prev => (prev === category ? '' : category));
+  };
 
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const data = await getNoticeList(selectedCategory);
-        setNoticeList(data.notices); // ✅ 실제 API 연동
+        const data = await getNoticeList(selectedCategory); // 카테고리 없이도 호출 가능해야 함
+        setNoticeList(data.notices);
       } catch (error) {
         console.error('공지 목록 조회 실패:', error);
-        setNoticeList([]); // fallback 제거
+        setNoticeList([]);
       } finally {
         setLoading(false);
       }
@@ -34,7 +39,7 @@ export default function Notice() {
       <section className='p-4'>
         <CampusFilter
           selected={selectedCategory}
-          onSelect={setSelectedCategory}
+          onSelect={handleSelectCategory} //필터 토글기능
         />
 
         <div className='mt-6 min-h-[200px]'>
@@ -49,7 +54,7 @@ export default function Notice() {
           ) : (
             <NoticeList
               noticeList={noticeList}
-              selectedCategory={selectedCategory}
+              selectedCategory={selectedCategory} // 이 값이 빈 문자열이면 전체 출력됨
             />
           )}
         </div>
