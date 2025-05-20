@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 type Notice = {
   noticeId: number;
@@ -30,7 +31,10 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
 
   return (
     <Link href={`/notice/${notice.noticeId}`}>
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
         className={`flex w-full border border-[rgba(223,244,255,1)] ${
           hasImage ? 'h-[76px]' : 'h-[54px]'
         } bg-white rounded-2xl px-4 py-3 shadow-md items-center`}
@@ -65,7 +69,7 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
           </p>
           <span className='text-sm text-gray-400 ml-3'>{formattedDate}</span>
         </div>
-      </div>
+      </motion.div>
     </Link>
   );
 }
