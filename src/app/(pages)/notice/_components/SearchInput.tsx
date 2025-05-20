@@ -35,6 +35,7 @@ export default function SearchInput({
         value={value}
         onChange={e => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
+        maxLength={30}
       />
     </div>
   );
