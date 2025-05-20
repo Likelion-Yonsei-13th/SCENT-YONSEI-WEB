@@ -52,15 +52,9 @@ export default function NoticeList({
 
   return (
     <div className='flex flex-col gap-3'>
-      {sortedNotices.length === 0 ? (
-        <p className='text-sm text-[rgba(255,255,255,1)] text-center py-10'>
-          검색 결과가 없습니다.
-        </p>
-      ) : (
-        sortedNotices.map(notice => (
-          <NoticeItem key={notice.noticeId} notice={notice} />
-        ))
-      )}
+      {sortedNotices.map(notice => (
+        <NoticeItem key={notice.noticeId} notice={notice} />
+      ))}
     </div>
   );
 }

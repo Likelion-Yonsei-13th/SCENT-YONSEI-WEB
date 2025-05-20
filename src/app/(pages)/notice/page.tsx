@@ -40,7 +40,7 @@ export default function Notice() {
     fetchNotices();
   }, [selectedCategory]);
 
-  // 클라쪽에서 필터링
+  // 클라쪽에서 검색어 필터링
   const filteredList = noticeList.filter(notice =>
     notice.title.toLowerCase().includes(searchKeyword.toLowerCase()),
   );
@@ -73,7 +73,7 @@ export default function Notice() {
             <div className='flex items-center justify-center min-h-[60vh]'>
               <p className='text-sm text-white'>공지사항이 없습니다.</p>
             </div>
-          ) : filteredList.length === 0 ? (
+          ) : searchKeyword && filteredList.length === 0 ? (
             // 분기) 공지는 있지만, 검색 결과만 없는 경우
             <div className='flex items-center justify-center min-h-[60vh]'>
               <p className='text-sm text-white'>검색 결과가 없습니다.</p>

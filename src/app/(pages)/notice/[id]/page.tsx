@@ -31,7 +31,12 @@ export default function NoticeDetailPage() {
     fetchDetail();
   }, [id]);
 
-  if (!notice) return <div className='p-4'>공지사항을 찾을 수 없습니다.</div>;
+  if (!notice)
+    return (
+      <div className='text-sm text-[rgba(255,255,255,1)] text-center py-10'>
+        공지사항을 찾을 수 없습니다.
+      </div>
+    );
 
   const formatDate = (iso: string) => {
     const date = new Date(iso);
