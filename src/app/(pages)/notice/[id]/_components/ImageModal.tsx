@@ -6,11 +6,19 @@ type Props = {
   images: string[];
   currentIndex: number;
   onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
 };
 
-export default function ImageModal({ images, currentIndex, onClose }: Props) {
+export default function ImageModal({
+  images,
+  currentIndex,
+  onClose,
+  onPrev,
+  onNext,
+}: Props) {
   const backdropRef = useRef<HTMLDivElement>(null);
-  const [index, setIndex] = useState(currentIndex);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === backdropRef.current) {
@@ -18,26 +26,24 @@ export default function ImageModal({ images, currentIndex, onClose }: Props) {
     }
   };
 
-  const touchStartX = useRef<number | null>(null);
-
   const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
+    setTouchStartX(e.touches[0].clientX);
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-
+    if (touchStartX === null) return;
     const touchEndX = e.changedTouches[0].clientX;
-    const deltaX = touchEndX - touchStartX.current;
+    const deltaX = touchEndX - touchStartX;
 
-    // 슬라이드 감지
-    if (deltaX > 50) {
-      setIndex(prev => (prev === 0 ? images.length - 1 : prev - 1));
-    } else if (deltaX < -50) {
-      setIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
+    const threshold = 50;
+
+    if (deltaX > threshold && currentIndex > 0) {
+      onPrev();
+    } else if (deltaX < -threshold && currentIndex < images.length - 1) {
+      onNext();
     }
 
-    touchStartX.current = null;
+    setTouchStartX(null);
   };
 
   return (
@@ -51,19 +57,21 @@ export default function ImageModal({ images, currentIndex, onClose }: Props) {
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <img
-          src={images[index]}
-          alt={`공지 이미지 ${index + 1}`}
-          className='rounded-md max-w-full max-h-full object-contain'
-        />
+        {images.length > 0 && images[currentIndex] && (
+          <img
+            src={images[currentIndex]}
+            alt={`공지 이미지 ${currentIndex + 1}`}
+            className='rounded-md max-w-full max-h-full object-contain'
+          />
+        )}
 
-        {/* 닫기 버튼 */}
-        {/* <button
+        {/* 닫기 버튼
+        <button
           className='absolute top-2 right-2 text-white text-3xl bg-black/50 rounded-full w-9 h-9 flex items-center justify-center'
           onClick={onClose}
         >
           ×
-        </button>  */}
+        </button> */}
       </div>
     </div>
   );
