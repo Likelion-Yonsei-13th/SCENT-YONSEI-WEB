@@ -38,9 +38,7 @@ export default function NoticeDetailPage() {
 
   if (!notice)
     return (
-      <div className='text-sm text-[rgba(255,255,255,1)] text-center py-10'>
-        공지사항을 찾을 수 없습니다.
-      </div>
+      <div className='text-sm text-[rgba(255,255,255,1)] text-center py-10'></div>
     );
 
   const formatDate = (iso: string) => {

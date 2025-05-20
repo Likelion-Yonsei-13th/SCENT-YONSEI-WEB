@@ -17,7 +17,7 @@ export async function getNoticeList(
   try {
     const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/notice?category=${category}&search=${search}`;
 
-    console.log('🔍 [getNoticeList] 요청 주소:', endpoint); // ✅ 요청 URL 로그 출력
+    console.log('[getNoticeList] 요청 주소:', endpoint);
 
     const res = await fetch(endpoint, {
       method: 'GET',
@@ -31,11 +31,9 @@ export async function getNoticeList(
 
     const json = await res.json();
 
-    console.log('📦 [getNoticeList] 응답 데이터:', json); // ✅ 응답 로그 출력
-
     const mappedNotices = json.data.notices.map((notice: any) => ({
       ...notice,
-      photoUrl: notice.photoUrl ?? '', // null-safe 처리
+      photoUrl: notice.photoUrl ?? '',
     }));
 
     return {
@@ -44,7 +42,7 @@ export async function getNoticeList(
       notices: mappedNotices,
     };
   } catch (error) {
-    console.error('❌ [getNoticeList] 에러:', error);
+    console.error('[getNoticeList] 에러:', error);
     throw error;
   }
 }
@@ -59,7 +57,7 @@ export async function getNoticeDetail(
   try {
     const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/notice/${noticeId}`;
 
-    console.log('[getNoticeDetail] 요청 주소:', endpoint); // ✅ 요청 URL 로그 출력
+    console.log('[getNoticeDetail] 요청 주소:', endpoint);
 
     const res = await fetch(endpoint, {
       method: 'GET',
@@ -73,11 +71,11 @@ export async function getNoticeDetail(
 
     const json = await res.json();
 
-    console.log('[getNoticeDetail] 응답 데이터:', json);
+    // console.log('[getNoticeDetail] 응답 데이터:', json);
 
     return json.data;
   } catch (error) {
-    console.error('❌ [getNoticeDetail] 에러:', error);
+    console.error('[getNoticeDetail] 에러:', error);
     throw error;
   }
 }

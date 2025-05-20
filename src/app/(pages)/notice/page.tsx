@@ -65,17 +65,17 @@ export default function Notice() {
 
         <div className='mt-6 min-h-[200px]'>
           {loading ? (
-            <div className='flex items-center justify-center min-h-[60vh]'>
+            <div className='flex items-center justify-center min-h-[7vh]'>
               <p className='text-white text-sm'>불러오는 중...</p>
             </div>
           ) : noticeList.length === 0 ? (
             // 분기) 전체 공지 목록 자체가 비어 있는 경우
-            <div className='flex items-center justify-center min-h-[60vh]'>
+            <div className='flex items-center justify-center min-h-[7vh]'>
               <p className='text-sm text-white'>공지사항이 없습니다.</p>
             </div>
           ) : searchKeyword && filteredList.length === 0 ? (
             // 분기) 공지는 있지만, 검색 결과만 없는 경우
-            <div className='flex items-center justify-center min-h-[60vh]'>
+            <div className='flex items-center justify-center min-h-[7vh]'>
               <p className='text-sm text-white'>검색 결과가 없습니다.</p>
             </div>
           ) : (
