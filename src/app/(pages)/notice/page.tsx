@@ -4,23 +4,30 @@ import { useEffect, useState } from 'react';
 import { TopBar } from '@/app/_common/components/top-bar';
 import CampusFilter from './_components/CampusFilter';
 import NoticeList from './_components/NoticeList';
+import SearchInput from './_components/SearchInput';
 import { getNoticeList } from '@/app/_common/apis/notice.api';
 import { NoticeListItem } from '@/app/_common/interfaces/notice.interface';
 
 export default function Notice() {
-  const [selectedCategory, setSelectedCategory] = useState<string>(''); // 초기에는 전체 카테고리 의미로 빈 문자열
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [noticeList, setNoticeList] = useState<NoticeListItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchKeyword, setSearchKeyword] = useState('');
 
-  // 카테고리 클릭 시 토글 방식으로 설정
   const handleSelectCategory = (category: string) => {
     setSelectedCategory(prev => (prev === category ? '' : category));
+    setSearchKeyword('');
+  };
+
+  const handleSearch = (keyword: string) => {
+    console.log('입력된 검색어:', keyword);
+    setSearchKeyword(keyword);
   };
 
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const data = await getNoticeList(selectedCategory); // 카테고리 없이도 호출 가능해야 함
+        const data = await getNoticeList(selectedCategory);
         setNoticeList(data.notices);
       } catch (error) {
         console.error('공지 목록 조회 실패:', error);
@@ -33,14 +40,28 @@ export default function Notice() {
     fetchNotices();
   }, [selectedCategory]);
 
+  // 클라쪽에서 필터링
+  const filteredList = noticeList.filter(notice =>
+    notice.title.toLowerCase().includes(searchKeyword.toLowerCase()),
+  );
+
   return (
     <main>
       <TopBar title='공지사항' bgClassName='bg-white/20 backdrop-blur-md p-4' />
       <section className='p-4'>
         <CampusFilter
           selected={selectedCategory}
-          onSelect={handleSelectCategory} //필터 토글기능
+          onSelect={handleSelectCategory}
         />
+
+        {/* 선택된 카테고리일 때만 검색 입력 */}
+        {selectedCategory && (
+          <SearchInput
+            value={searchKeyword}
+            onChange={setSearchKeyword}
+            onSearch={handleSearch}
+          />
+        )}
 
         <div className='mt-6 min-h-[200px]'>
           {loading ? (
@@ -48,13 +69,20 @@ export default function Notice() {
               <p className='text-white text-sm'>불러오는 중...</p>
             </div>
           ) : noticeList.length === 0 ? (
+            // 분기) 전체 공지 목록 자체가 비어 있는 경우
             <div className='flex items-center justify-center min-h-[60vh]'>
               <p className='text-sm text-white'>공지사항이 없습니다.</p>
             </div>
+          ) : filteredList.length === 0 ? (
+            // 분기) 공지는 있지만, 검색 결과만 없는 경우
+            <div className='flex items-center justify-center min-h-[60vh]'>
+              <p className='text-sm text-white'>검색 결과가 없습니다.</p>
+            </div>
           ) : (
             <NoticeList
-              noticeList={noticeList}
-              selectedCategory={selectedCategory} // 이 값이 빈 문자열이면 전체 출력됨
+              noticeList={filteredList}
+              selectedCategory={selectedCategory}
+              searchKeyword={searchKeyword}
             />
           )}
         </div>

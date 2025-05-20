@@ -17,7 +17,7 @@ export default function NoticeDetailPage() {
     const fetchDetail = async () => {
       try {
         const data = await getNoticeDetail(id as string);
-        console.log('‼️공지상세데이터:', data);
+        console.log('‼공지상세데이터:', data);
 
         setNotice(data);
       } catch (error) {

@@ -2,52 +2,65 @@
 
 import NoticeItem from './NoticeItem';
 
-// 데이터 타입 정의
-type Notice = {
+// 공지 데이터 타입 정의
+export type Notice = {
   noticeId: number;
   title: string;
   importance: boolean;
   category: string;
   created_at: string;
   updated_at: string;
-  thumbnailUrl?: string;
+  photoUrl?: string | null;
 };
 
-// 공지 배열 전체를 props로 받는 타입 정의
+// props 타입 정의
 type NoticeListProps = {
   noticeList: Notice[];
   selectedCategory: string;
+  searchKeyword?: string;
 };
 
 export default function NoticeList({
   noticeList,
   selectedCategory,
+  searchKeyword = '',
 }: NoticeListProps) {
-  // selectedCategory가 비어있다면 전체 리스트를 사용하고, 아니라면 필터링
-  const filteredNotices =
-    selectedCategory === ''
-      ? noticeList
-      : noticeList.filter(notice => notice.category === selectedCategory);
+  // 카테고리 필터링
+  const filteredByCategory = selectedCategory
+    ? noticeList.filter(notice => notice.category === selectedCategory)
+    : noticeList;
 
-  // 중요 공지는 순서 유지
-  const fixedNotices = filteredNotices.filter(n => n.importance);
+  // 검색어 필터링
+  const filteredBySearch = searchKeyword.trim()
+    ? filteredByCategory.filter(notice =>
+        notice.title.toLowerCase().includes(searchKeyword.toLowerCase()),
+      )
+    : filteredByCategory;
 
-  // 일반 공지는 생성일 기준 최신순 정렬
-  const normalNotices = filteredNotices
+  // 중요 공지 유지
+  const fixedNotices = filteredBySearch.filter(n => n.importance);
+
+  // 일반 공지는 최신순 정렬
+  const normalNotices = filteredBySearch
     .filter(n => !n.importance)
     .sort(
       (a, b) =>
         new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
     );
 
-  // 중요 공지 + 일반 공지를 하나로 병합
   const sortedNotices = [...fixedNotices, ...normalNotices];
 
   return (
     <div className='flex flex-col gap-3'>
-      {sortedNotices.map(notice => (
-        <NoticeItem key={notice.noticeId} notice={notice} />
-      ))}
+      {sortedNotices.length === 0 ? (
+        <p className='text-sm text-[rgba(255,255,255,1)] text-center py-10'>
+          검색 결과가 없습니다.
+        </p>
+      ) : (
+        sortedNotices.map(notice => (
+          <NoticeItem key={notice.noticeId} notice={notice} />
+        ))
+      )}
     </div>
   );
 }
