@@ -5,11 +5,16 @@ import { useParams } from 'next/navigation';
 import { TopBar } from '@/app/_common/components/top-bar';
 import { getNoticeDetail } from '@/app/_common/apis/notice.api';
 import { NoticeDetailResponse } from '@/app/_common/interfaces/notice.interface';
+import ImageModal from './_components/ImageModal';
 
 export default function NoticeDetailPage() {
   const { id } = useParams();
   const [notice, setNotice] = useState<NoticeDetailResponse | null>(null);
   const [loading, setLoading] = useState(true);
+
+  // 이미지 모달 state 관리
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     if (!id) return;
@@ -45,9 +50,34 @@ export default function NoticeDetailPage() {
     return `${month}.${day}`;
   };
 
+  //이미지 열람
+  const openModal = (index: number) => {
+    setCurrentImageIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handlePrev = () => {
+    setCurrentImageIndex(prev =>
+      prev === 0 ? (notice?.photo.length ?? 1) - 1 : prev - 1,
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentImageIndex(prev =>
+      prev === (notice?.photo.length ?? 1) - 1 ? 0 : prev + 1,
+    );
+  };
+
   return (
     <div className="min-h-screen bg-[url('/img/main-background.jpg')] bg-cover bg-no-repeat pt-20 pb-10">
-      <TopBar title='공지사항' bgClassName='bg-white/20 backdrop-blur-md p-4' />
+      <TopBar
+        title='공지사항'
+        bgClassName='bg-[rgba(255,255,255,0.2)] backdrop-blur-md p-4'
+      />
 
       <div className='bg-white rounded-3xl mx-4 mt-12 p-7 shadow-xl mb-20'>
         <h2 className='text-lg font-bold mb-1'>{notice.title}</h2>
@@ -55,6 +85,7 @@ export default function NoticeDetailPage() {
           {formatDate(notice.updated_at)}
         </p>
 
+        {/* 이미지 리스트 */}
         {notice.photo && notice.photo.length > 0 && (
           <div className='flex gap-3 overflow-x-auto mb-4'>
             {notice.photo.map((url, i) => (
@@ -62,12 +93,14 @@ export default function NoticeDetailPage() {
                 key={i}
                 src={url}
                 alt={`공지 이미지 ${i + 1}`}
-                className='w-[100px] h-[100px] rounded-md object-cover'
+                className='w-[110px] h-[110px] rounded-md object-cover cursor-pointer'
+                onClick={() => openModal(i)}
               />
             ))}
           </div>
         )}
 
+        {/* 공지 내용 */}
         <div
           className='text-sm leading-6 text-gray-800 whitespace-pre-wrap'
           dangerouslySetInnerHTML={{
@@ -75,6 +108,17 @@ export default function NoticeDetailPage() {
           }}
         />
       </div>
+
+      {/* 이미지 모달 */}
+      {isModalOpen && notice.photo && (
+        <ImageModal
+          images={notice.photo}
+          currentIndex={currentImageIndex}
+          onClose={closeModal}
+          onPrev={handlePrev}
+          onNext={handleNext}
+        />
+      )}
     </div>
   );
 }
