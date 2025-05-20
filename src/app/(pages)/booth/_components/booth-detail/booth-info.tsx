@@ -2,13 +2,14 @@ import Instagram from '@/public/svg/booth/instagram.svg';
 import Location from '@/public/svg/booth/location.svg';
 import Watch from '@/public/svg/booth/watch.svg';
 import Link from 'next/link';
+import { BoothDetail } from '@/app/_common/interfaces/booth.interface';
 
-export function BoothInfo() {
+export function BoothInfo({ boothDetail }: { boothDetail: BoothDetail }) {
   const boothInfoList = [
     {
       icon: <Instagram />,
       label: 'insta',
-      value: '@likelion_yonsei',
+      value: boothDetail.instagram,
     },
     {
       icon: <Location />,
@@ -59,10 +60,7 @@ export function BoothInfo() {
 
       {/* booth introduce info */}
       <p className='text-label-l leading-[24px] text-black000 whitespace-pre-line'>
-        부스 소개 내용을 적습니다,부스 소개 내용을 적습니다,부스 소개 내용을
-        적습니다,부스 소개 내용을 적습니다,부스 소개 내용을 적습니다,부스 소개
-        내용을 적습니다,부스 소개 내용을 적습니다,부스 소개 내용을 적습니다,부스
-        소개 내용을 적습니다,
+        {boothDetail.description}
       </p>
     </section>
   );

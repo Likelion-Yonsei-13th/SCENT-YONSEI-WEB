@@ -1,4 +1,4 @@
-export const revalidate = 60;
+export const revalidate = 360;
 
 import { TopBar } from '@/app/_common/components/top-bar';
 import { TabDay } from './_components/booth-main/tab-day';
@@ -27,17 +27,22 @@ export default async function BoothPage() {
   const record: Partial<BoothListRecord> = {};
 
   // 모든 조합 부스 데이터 Promise 객체 생성
-  // await Promise.all(
-  //   days.flatMap((day) =>
-  //     sections.flatMap((section) =>
-  //       categories.map(async (category) => {
-  //         const key: BoothListKey = `${day}-${section}-${category}`;
-  //         const data = await getBoothList({ day, section, category, search: '' });
-  //         record[key] = data;
-  //       })
-  //     )
-  //   )
-  // );
+  await Promise.all(
+    days.flatMap(day =>
+      sections.flatMap(section =>
+        categories.map(async category => {
+          const key: BoothListKey = `${day}-${section}-${category}`;
+          const data = await getBoothList({
+            day,
+            section,
+            category,
+            search: '',
+          });
+          record[key] = data;
+        }),
+      ),
+    ),
+  );
 
   return (
     <div

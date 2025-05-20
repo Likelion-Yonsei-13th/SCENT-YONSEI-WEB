@@ -53,7 +53,7 @@ export async function getBoothDetail(
     if (!response.ok) {
       throw new Error('Failed to fetch booth detail');
     }
-    const data: BoothDetail = await response.json();
+    const { data }: { data: BoothDetail } = await response.json();
     return data;
   } catch (error) {
     console.error(error);

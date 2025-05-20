@@ -6,12 +6,22 @@ import {
   CarouselItem,
   CarouselApi,
 } from '@/app/_core/components/carousel';
+import Image from 'next/image';
 import * as React from 'react';
 
-export function ImgCarousel() {
+export function ImgCarousel({
+  imagesUrl,
+  boothName,
+  organizationName,
+}: {
+  imagesUrl: string[] | undefined;
+  boothName: string;
+  organizationName: string;
+}) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+  const [arrayLength, setArrayLength] = React.useState(imagesUrl?.length ?? 3);
 
   React.useEffect(() => {
     if (!api) {
@@ -31,15 +41,24 @@ export function ImgCarousel() {
       <CarouselContent className='rounded-[20px]'>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
-            <div className='relative w-full h-auto flex aspect-[3/4] items-center justify-center p-6 bg-gray200 rounded-[20px]'></div>
+            <div className='relative w-full h-auto flex aspect-[3/4] items-center justify-center p-6 bg-gray200 rounded-[20px]'>
+              {imagesUrl?.[index] && (
+                <Image
+                  src={imagesUrl?.[index]}
+                  alt={`booth-image-${index}`}
+                  fill
+                  className='object-contain rounded-[20px]'
+                />
+              )}
+            </div>
           </CarouselItem>
         ))}
       </CarouselContent>
 
       {/* booth name, organization name */}
-      <span className='z-20 absolute bottom-8 left-10 h-auto flex flex-col items-start gap-1 bg-inherit text-white000'>
-        <h2 className='text-display-m'>부스명</h2>
-        <p className='text-label-l'>단체명</p>
+      <span className='z-20 absolute bottom-8 left-10 pr-6 h-auto flex flex-col items-start gap-1 bg-inherit text-white000'>
+        <h2 className='text-display-m line-clamp-1'>{boothName}</h2>
+        <p className='text-label-l line-clamp-1'>{organizationName}</p>
       </span>
 
       {/* 그라데이션 효과 */}

@@ -37,7 +37,7 @@ export interface BoothDetail {
   name: string;
   organization: string;
   instagram?: string;
-  photo?: string;
+  photos?: string[];
   description: string;
   menu?: Menu[];
 }

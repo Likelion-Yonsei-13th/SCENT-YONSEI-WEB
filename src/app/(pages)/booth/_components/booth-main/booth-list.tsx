@@ -12,7 +12,7 @@ export function BoothList({ record }: { record: Partial<BoothListRecord> }) {
 
   const filteredBoothData =
     boothData?.booth?.filter(booth => {
-      if (search && search === '') return true; // 검색어 없으면 모두 통과
+      if (search && search === '') return true;
 
       const keyword = search.toLowerCase();
       return (
@@ -23,13 +23,9 @@ export function BoothList({ record }: { record: Partial<BoothListRecord> }) {
 
   return (
     <section className='pt-4 pb-12 w-full grid grid-cols-2 gap-x-3 gap-y-4'>
-      <BoothCard />
-      <BoothCard />
-      <BoothCard />
-      <BoothCard />
-      <BoothCard />
-      <BoothCard />
-      <BoothCard />
+      {filteredBoothData.map(booth => (
+        <BoothCard key={booth.boothId} booth={booth} />
+      ))}
     </section>
   );
 }
