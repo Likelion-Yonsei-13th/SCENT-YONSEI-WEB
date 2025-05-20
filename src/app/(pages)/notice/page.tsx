@@ -42,7 +42,7 @@ export default function Notice() {
 
   // 클라쪽에서 검색어 필터링
   const filteredList = noticeList.filter(notice =>
-    notice.title.toLowerCase().includes(searchKeyword.toLowerCase()),
+    notice.title.includes(searchKeyword),
   );
 
   return (

@@ -31,7 +31,7 @@ export default function SearchInput({
       <input
         type='text'
         placeholder='공지사항을 검색해주세요'
-        className='w-full pl-10 pr-4 py-2 mb-1 text-sm rounded-md border border-[rgba(223,244,255,1)] bg-white focus:outline-none'
+        className='w-full h-[40px] pl-10 pr-4 py-2 mb-1 text-sm rounded-[10px] border border-[rgba(223,244,255,1)] bg-white focus:outline-none'
         value={value}
         onChange={e => onChange(e.target.value)}
         onKeyDown={handleKeyDown}
