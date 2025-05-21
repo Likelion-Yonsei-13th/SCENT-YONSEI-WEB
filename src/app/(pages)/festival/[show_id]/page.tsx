@@ -1,12 +1,19 @@
 import Image from 'next/image';
 import { festivalRepository } from '../_repository/festival.repository';
-import {
-  CalendarIcon,
-  InstagramIcon,
-  LocationIcon,
-  TimeIcon,
-} from '../_assets/icons';
+import { CalendarIcon, LocationIcon, TimeIcon } from '../_assets/icons';
 import { InstagramInfoBadge } from './_components/instagram-info-badge';
+
+export const revalidate = 3600;
+
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const { day1, day2, day3 } = await festivalRepository.getAllShowList();
+
+  return [...day1, ...day2, ...day3].map(show => ({
+    show_id: show.showId.toString(),
+  }));
+}
 
 const FestivalShowPage = async ({
   params,
@@ -17,13 +24,15 @@ const FestivalShowPage = async ({
 
   const result = await festivalRepository.getShowDetail(show_id);
 
+  console.log(result);
+
   return (
     <div className='flex flex-col gap-5 size-full items-center justify-start pt-10 px-6'>
-      <div
-        // src={data.data.photo || ''}
-        // alt='festival-show-image'
-        // width={400}
-        // height={400}
+      <Image
+        src={result.data.photo[0] || ''}
+        alt='festival-show-image'
+        width={400}
+        height={400}
         className='rounded-[10px] w-full h-auto bg-gray300 aspect-square'
       />
       <div className='rounded-[20px] bg-white000 px-6 py-8 flex flex-col gap-6 w-full'>
