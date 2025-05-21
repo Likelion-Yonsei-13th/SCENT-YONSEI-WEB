@@ -25,7 +25,7 @@ export async function getBoothList(params: BoothListParams): Promise<Booth> {
     if (!response.ok) {
       throw new Error('Failed to fetch booth list');
     }
-    const data: Booth = await response.json();
+    const data: Booth = await response.json().then(data => data.data);
     return data;
   } catch (error) {
     console.error(error);

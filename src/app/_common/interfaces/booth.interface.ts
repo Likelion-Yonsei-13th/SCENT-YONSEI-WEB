@@ -29,11 +29,14 @@ export interface Menu {
   menu_id: number;
   menu_name?: string;
   price?: number;
+  menu_photo?: string;
 }
 
 export interface BoothDetail {
   boothId: number;
   foodTruckId: number;
+  section: Section;
+  location: number;
   name: string;
   organization: string;
   instagram?: string;

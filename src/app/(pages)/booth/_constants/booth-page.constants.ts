@@ -3,44 +3,44 @@ import { Category, Day, Section } from '../types/booth-union.type';
 export const dayList: { label: string; value: Day }[] = [
   {
     label: 'DAY1 28일',
-    value: '28',
+    value: '1',
   },
   {
     label: 'DAY2 29일',
-    value: '29',
+    value: '2',
   },
   {
     label: 'DAY3 30일',
-    value: '30',
+    value: '3',
   },
 ];
 
 export const sectionList: { label: string; value: Section }[] = [
   {
     label: '백양로',
-    value: 'baekyang',
+    value: '백양로',
   },
   {
     label: '한글탑',
-    value: 'hangeul',
+    value: '한글탑',
   },
   {
     label: '국제캠',
-    value: 'global',
+    value: '국제캠',
   },
 ];
 
 export const categoryList: { label: string; value: Category }[] = [
   {
     label: '전체',
-    value: 'all',
+    value: '전체',
   },
   {
     label: '부스',
-    value: 'booth',
+    value: '부스',
   },
   {
     label: '푸드트럭',
-    value: 'foodtruck',
+    value: '푸드트럭',
   },
 ];

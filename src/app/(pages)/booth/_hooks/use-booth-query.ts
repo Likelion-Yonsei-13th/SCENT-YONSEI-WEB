@@ -11,15 +11,15 @@ import {
 export function useBoothQueryParams() {
   const [day] = useQueryState(
     'day',
-    parseAsStringLiteral(days).withDefault('28'),
+    parseAsStringLiteral(days).withDefault('1'),
   );
   const [section] = useQueryState(
     'section',
-    parseAsStringLiteral(sections).withDefault('baekyang'),
+    parseAsStringLiteral(sections).withDefault('백양로'),
   );
   const [category] = useQueryState(
     'category',
-    parseAsStringLiteral(categories).withDefault('all'),
+    parseAsStringLiteral(categories).withDefault('전체'),
   );
   const [search] = useQueryState(
     'search',

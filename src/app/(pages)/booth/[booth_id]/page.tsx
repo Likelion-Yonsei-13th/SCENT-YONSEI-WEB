@@ -1,5 +1,3 @@
-// export const revalidate = 360;
-
 import { TopBar } from '@/app/_common/components/top-bar';
 import { ImgCarousel } from '../_components/booth-detail/img-carousel';
 import { BoothInfo } from '../_components/booth-detail/booth-info';
@@ -8,12 +6,17 @@ import { MenuList } from '../_components/booth-detail/menu-list';
 
 import { getBoothDetail } from '@/app/_common/apis/booth.api';
 
+export const revalidate = 3600;
+
+export const dynamicParams = true;
+
 export default async function BoothDetailPage({
-  params: { booth_id },
+  params,
 }: {
-  params: { booth_id: string };
+  params: Promise<{ booth_id: string }>;
 }) {
-  const boothDetail = await getBoothDetail(booth_id, { category: 'booth' });
+  const { booth_id } = await params;
+  const boothDetail = await getBoothDetail(booth_id, { category: '부스' });
 
   return (
     <div className='relative w-full h-full flex flex-col'>
@@ -25,8 +28,8 @@ export default async function BoothDetailPage({
           organizationName={boothDetail.organization}
         />
         <BoothInfo boothDetail={boothDetail} />
-        <BoothLocation />
-        <MenuList />
+        <BoothLocation section={boothDetail.section} />
+        <MenuList menuList={boothDetail.menu} />
       </main>
     </div>
   );

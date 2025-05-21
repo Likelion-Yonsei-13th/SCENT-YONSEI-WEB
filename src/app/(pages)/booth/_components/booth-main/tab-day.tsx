@@ -8,11 +8,11 @@ import { parseAsStringLiteral, useQueryState } from 'nuqs';
 export function TabDay() {
   const [dayState, setDayState] = useQueryState(
     'day',
-    parseAsStringLiteral(days).withDefault('28'),
+    parseAsStringLiteral(days).withDefault('1'),
   );
 
   return (
-    <div className='pb-8 w-full flex items-center justify-start gap-3'>
+    <div className='flex-shirink-0 min-w-0 pb-8 w-full flex items-center justify-center gap-3'>
       {dayList.map(dayBtn => (
         <button
           key={dayBtn.value}

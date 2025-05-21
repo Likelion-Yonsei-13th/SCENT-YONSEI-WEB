@@ -3,23 +3,24 @@ import Location from '@/public/svg/booth/location.svg';
 import Watch from '@/public/svg/booth/watch.svg';
 import Link from 'next/link';
 import { BoothDetail } from '@/app/_common/interfaces/booth.interface';
+import { FileText } from 'lucide-react';
 
 export function BoothInfo({ boothDetail }: { boothDetail: BoothDetail }) {
   const boothInfoList = [
     {
       icon: <Instagram />,
       label: 'insta',
-      value: boothDetail.instagram,
+      value: boothDetail.instagram ?? '@yonsei_studentcouncil',
     },
     {
       icon: <Location />,
       label: 'location',
-      value: '백양로 n번 부스',
+      value: `${boothDetail.section} ${boothDetail.location}번 부스`,
     },
     {
       icon: <Watch />,
       label: 'time',
-      value: '10:00 ~ 18:00',
+      value: '17:00 ~ 23:00',
     },
   ];
   return (
@@ -27,8 +28,9 @@ export function BoothInfo({ boothDetail }: { boothDetail: BoothDetail }) {
       <div className='w-full h-auto flex flex-col items-start gap-1'>
         {/* instagram info */}
         <Link
-          href={`https://www.instagram.com/${boothInfoList[0].value}`}
+          href={`https://www.instagram.com/${boothInfoList[0].value.split('@')[1]}`}
           className='flex items-center gap-1 cursor-pointer'
+          target='_blank'
         >
           <span className='size-5 flex items-center justify-center'>
             <Instagram />
@@ -59,9 +61,19 @@ export function BoothInfo({ boothDetail }: { boothDetail: BoothDetail }) {
       <div className='w-full h-[1px] bg-gray300' />
 
       {/* booth introduce info */}
-      <p className='text-label-l leading-[24px] text-black000 whitespace-pre-line'>
-        {boothDetail.description}
-      </p>
+
+      {boothDetail.description ? (
+        <p className='text-label-l leading-[24px] text-black000 whitespace-pre-line'>
+          {boothDetail.description}
+        </p>
+      ) : (
+        <div className='h-full w-full flex flex-col items-center justify-center gap-2'>
+          <FileText className='size-10 text-gray500' />
+          <span className='text-label-l text-gray500'>
+            부스 소개글이 존재하지 않습니다.
+          </span>
+        </div>
+      )}
     </section>
   );
 }

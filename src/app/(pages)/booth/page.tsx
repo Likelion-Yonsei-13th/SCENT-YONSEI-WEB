@@ -36,6 +36,7 @@ export default async function BoothPage() {
       ),
     ),
   );
+  console.log(record);
   return (
     <div
       id='booth-page'

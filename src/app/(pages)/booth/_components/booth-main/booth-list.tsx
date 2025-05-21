@@ -16,8 +16,8 @@ export function BoothList({ record }: { record: Partial<BoothListRecord> }) {
 
       const keyword = search.toLowerCase();
       return (
-        booth.name.toLowerCase().includes(keyword) ||
-        booth.organization.toLowerCase().includes(keyword)
+        booth.name?.toLowerCase().includes(keyword) ||
+        booth.organization?.toLowerCase().includes(keyword)
       );
     }) ?? [];
 

@@ -12,16 +12,16 @@ import 'react-medium-image-zoom/dist/styles.css';
 export function BoothSection() {
   const [sectionState, setSectionState] = useQueryState(
     'section',
-    parseAsStringLiteral(sections).withDefault('baekyang'),
+    parseAsStringLiteral(sections).withDefault('백양로'),
   );
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    if (sectionState === 'baekyang') {
+    if (sectionState === '백양로') {
       setImageUrl('/img/booth/baekyang-section.jpg');
-    } else if (sectionState === 'hangeul') {
+    } else if (sectionState === '한글탑') {
       setImageUrl('/img/booth/hangeul-section.jpg');
-    } else if (sectionState === 'global') {
+    } else if (sectionState === '국제캠') {
       setImageUrl('/img/booth/global-section.jpg');
     }
   }, [sectionState]);
@@ -43,20 +43,31 @@ export function BoothSection() {
           </button>
         ))}
       </span>
-      <Zoom>
+      {imageUrl ? (
+        // <Zoom
+        //   zoomImg={imageUrl}
+        //   zoomImgAlt='백양로'
+        //   zoomImgFill
+        //   zoomImgPriority
+        //   zoomImgSizes='100vw'
+        //   zoomImgClassName='object-cover rounded-[10px]'
+        // >
         <div className='relative w-full h-auto flex rounded-[10px] bg-gray300 aspect-[159/127]'>
-          {imageUrl !== '' && imageUrl !== null && (
-            <Image
-              src={imageUrl}
-              alt='백양로'
-              fill
-              sizes='100vw'
-              className='object-cover rounded-[10px]'
-              priority
-            />
-          )}
+          <Image
+            src={imageUrl ?? ''}
+            alt='백양로'
+            fill
+            sizes='100vw'
+            className='object-cover rounded-[10px]'
+            priority
+          />
+          {/* {imageUrl !== '' && imageUrl !== null && (
+            )} */}
         </div>
-      </Zoom>
+      ) : (
+        // </Zoom>
+        <div className='relative w-full h-auto flex rounded-[10px] bg-gray300 aspect-[159/127]' />
+      )}
     </section>
   );
 }
