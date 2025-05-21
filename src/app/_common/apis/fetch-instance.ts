@@ -26,7 +26,7 @@ export const fetchInstance = ({
   cache,
   next,
 }: FetchInstanceParams) => {
-  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/${url}`, {
+  return fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
     method,
     cache,
     next,

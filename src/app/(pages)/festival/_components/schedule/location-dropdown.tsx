@@ -121,7 +121,7 @@ export const LocationDropdown = () => {
                   alt={currentLocation}
                   width={300}
                   height={300}
-                  className='rounded-[10px] w-full h-auto object-cover'
+                  className='rounded-[10px] w-[300px] h-auto object-cover'
                 />
               </div>
             </motion.div>

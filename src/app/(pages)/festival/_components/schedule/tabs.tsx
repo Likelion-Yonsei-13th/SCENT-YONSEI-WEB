@@ -12,18 +12,18 @@ const inactiveTabButtonClassName =
   'text-black000 font-normal bg-white000 border-1 border-light200';
 
 export const Tabs = () => {
-  const { currentTab, handleTabChange } = useDayTabQueryState();
+  const { currentDay, handleDayChange } = useDayTabQueryState();
 
   return (
     <div className='flex justify-around gap-3 items-center text-label-l w-full'>
       {dayTabs.map(tab => (
         <button
           key={tab.value}
-          onClick={() => handleTabChange(tab.value)}
+          onClick={() => handleDayChange(tab.value)}
           className={cn(
             tabButtonClassName,
-            currentTab === tab.value && activeTabButtonClassName,
-            currentTab !== tab.value && inactiveTabButtonClassName,
+            currentDay === tab.value && activeTabButtonClassName,
+            currentDay !== tab.value && inactiveTabButtonClassName,
           )}
         >
           {tab.label}

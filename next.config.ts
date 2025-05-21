@@ -8,6 +8,13 @@ const nextConfig: NextConfig = {
     });
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'scent-photo-bucket.s3.ap-northeast-2.amazonaws.com',
+      },
+    ],
+  },
   experimental: {
     turbo: {
       rules: {

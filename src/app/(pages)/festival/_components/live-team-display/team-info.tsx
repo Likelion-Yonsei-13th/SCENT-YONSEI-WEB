@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const ShowInfo = ({
@@ -13,11 +14,26 @@ export const ShowInfo = ({
   return (
     <Link href={`/festival/${showId}`}>
       <div className='flex flex-col items-center justify-center gap-2.5'>
-        <div className='size-[68px] bg-white rounded-full' />
+        <div className='relative size-[68px] border-1 border-white000 rounded-full overflow-hidden flex items-center justify-center'>
+          {photo ? (
+            <Image
+              src={photo}
+              alt={title}
+              width={68}
+              height={68}
+              className='object-contain'
+            />
+          ) : (
+            <div className='size-full bg-[#D9D9D9] rounded-full' />
+          )}
+        </div>
         <div className='text-center flex flex-col gap-0.5'>
-          <p className='text-label-s font-normal text-white000'>{title}</p>
-          <p className='text-label-l font-semibold text-white000 max-w-20 text-wrap'>
-            {title}
+          <p className='text-label-s font-normal text-white000'>
+            {title.slice(0, 6)}
+          </p>
+          <p className='text-headline-l !font-semibold text-white000 max-w-20'>
+            {title.slice(0, 7)}
+            {title.length > 7 && '...'}
           </p>
         </div>
       </div>
