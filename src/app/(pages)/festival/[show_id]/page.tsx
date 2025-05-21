@@ -8,9 +8,9 @@ export const revalidate = 3600;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  const { day1, day2, day3 } = await festivalRepository.getAllShowList();
+  const { day2, day3, day4 } = await festivalRepository.getAllShowList();
 
-  return [...day1, ...day2, ...day3].map(show => ({
+  return [...day2, ...day3, ...day4].map(show => ({
     show_id: show.showId.toString(),
   }));
 }

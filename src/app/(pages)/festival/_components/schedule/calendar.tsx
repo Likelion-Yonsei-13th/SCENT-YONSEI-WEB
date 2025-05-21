@@ -1,22 +1,16 @@
 'use client';
 import { useMemo } from 'react';
 import { useDayTabQueryState } from '../../_hooks/use-day-tab-query-state';
-import { type LiveShow } from '../../_repository/festival.types';
+import { type ShowData } from '../../_hooks/use-live-show';
 
-interface CalendarProps {
-  day1: LiveShow[];
-  day2: LiveShow[];
-  day3: LiveShow[];
-}
-
-export const Calendar = ({ day1, day2, day3 }: CalendarProps) => {
+export const Calendar = ({ day2, day3, day4 }: ShowData) => {
   const { currentDay } = useDayTabQueryState();
 
   const shows = useMemo(() => {
-    if (currentDay === '1') return day1;
     if (currentDay === '2') return day2;
-    return day3;
-  }, [currentDay, day1, day2, day3]);
+    if (currentDay === '3') return day3;
+    return day4;
+  }, [currentDay, day2, day3, day4]);
 
   return <div>{shows.map(show => show.title)}</div>;
 };

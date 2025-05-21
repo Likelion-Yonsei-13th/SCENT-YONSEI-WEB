@@ -25,16 +25,16 @@ class FestivalRepository {
   }
 
   async getAllShowList() {
-    const [day1, day2, day3] = await Promise.all([
-      this.getShowList('1'),
+    const [day2, day3, day4] = await Promise.all([
       this.getShowList('2'),
       this.getShowList('3'),
+      this.getShowList('4'),
     ]);
 
     return {
-      day1: day1.data.show,
       day2: day2.data.show,
       day3: day3.data.show,
+      day4: day4.data.show,
     };
   }
 
