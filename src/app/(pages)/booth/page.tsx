@@ -16,13 +16,6 @@ import {
 } from './types/booth-union.type';
 import { getBoothList } from '@/app/_common/apis/booth.api';
 
-const defaultParams: BoothListParams = {
-  day: '28',
-  section: 'baekyang',
-  category: 'all',
-  search: '',
-};
-
 export default async function BoothPage() {
   const record: Partial<BoothListRecord> = {};
 
@@ -43,7 +36,6 @@ export default async function BoothPage() {
       ),
     ),
   );
-
   return (
     <div
       id='booth-page'
