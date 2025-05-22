@@ -18,6 +18,7 @@ export async function getNoticeList(
     const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/notice?category=${category}&search=${search}`;
 
     console.log('[getNoticeList] 요청 주소:', endpoint);
+    console.log('[api호출]카테고리: ', category, '검색어', search);
 
     const res = await fetch(endpoint, {
       method: 'GET',
@@ -30,6 +31,11 @@ export async function getNoticeList(
     if (!res.ok) throw new Error('공지 목록 조회 실패');
 
     const json = await res.json();
+    console.log('[서버응답결과]', json); //서버가 반환한 데이터 확인
+    console.log(
+      '[서버 응답 notices]',
+      JSON.stringify(json.data.notices, null, 2),
+    );
 
     const mappedNotices = json.data.notices.map((notice: any) => ({
       ...notice,
@@ -68,6 +74,8 @@ export async function getNoticeDetail(
     });
 
     if (!res.ok) throw new Error('공지 상세 조회 실패');
+
+    console.log(` [API 성공] GET /notice (status: ${res.status})`);
 
     const json = await res.json();
 

@@ -14,36 +14,45 @@ export default function Notice() {
   const [loading, setLoading] = useState(true);
   const [searchKeyword, setSearchKeyword] = useState('');
 
+  const [searchFailed, setSearchFailed] = useState(false);
+
+  const fetchNotices = async (category: string, keyword: string = '') => {
+    setLoading(true);
+    try {
+      const data = await getNoticeList(category, keyword);
+      setNoticeList(data.notices);
+      setSearchFailed(false);
+    } catch (error: any) {
+      console.error('공지 목록 조회 실패:', error);
+      setNoticeList([]);
+      if (error.message.includes('404')) {
+        setSearchFailed(true);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  //검색어 필터링링
   const handleSelectCategory = (category: string) => {
-    setSelectedCategory(prev => (prev === category ? '' : category));
+    const newCategory = selectedCategory === category ? '' : category;
+    setSelectedCategory(newCategory);
     setSearchKeyword('');
+    fetchNotices(newCategory);
   };
 
   const handleSearch = (keyword: string) => {
-    console.log('입력된 검색어:', keyword);
+    console.log('키워드:', keyword);
     setSearchKeyword(keyword);
+    if (selectedCategory) {
+      fetchNotices(selectedCategory, keyword);
+    }
   };
 
+  // 최초 진입 시 전체 목록
   useEffect(() => {
-    const fetchNotices = async () => {
-      try {
-        const data = await getNoticeList(selectedCategory);
-        setNoticeList(data.notices);
-      } catch (error) {
-        console.error('공지 목록 조회 실패:', error);
-        setNoticeList([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchNotices();
-  }, [selectedCategory]);
-
-  // 클라쪽에서 검색어 필터링
-  const filteredList = noticeList.filter(notice =>
-    notice.title.includes(searchKeyword),
-  );
+    fetchNotices('');
+  }, []);
 
   return (
     <main>
@@ -69,18 +78,16 @@ export default function Notice() {
               <p className='text-white text-sm'>불러오는 중...</p>
             </div>
           ) : noticeList.length === 0 ? (
-            // 분기) 전체 공지 목록 자체가 비어 있는 경우
             <div className='flex items-center justify-center min-h-[7vh]'>
-              <p className='text-sm text-white'>공지사항이 없습니다.</p>
-            </div>
-          ) : searchKeyword && filteredList.length === 0 ? (
-            // 분기) 공지는 있지만, 검색 결과만 없는 경우
-            <div className='flex items-center justify-center min-h-[7vh]'>
-              <p className='text-sm text-white'>검색 결과가 없습니다.</p>
+              <p className='text-sm text-white'>
+                {searchKeyword && searchFailed
+                  ? '검색 결과가 없습니다.'
+                  : '공지사항이 없습니다.'}
+              </p>
             </div>
           ) : (
             <NoticeList
-              noticeList={filteredList}
+              noticeList={noticeList}
               selectedCategory={selectedCategory}
               searchKeyword={searchKeyword}
             />

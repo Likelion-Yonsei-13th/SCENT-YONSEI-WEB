@@ -41,12 +41,12 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
       >
         {/* 아이콘 or 이미지 */}
         {!isTextOnly && (
-          <div className='w-10 h-10 rounded-md flex items-center justify-center shrink-0 mr-3'>
+          <div className='w-11 h-9 rounded-md flex items-center justify-center shrink-0 mr-3'>
             {hasImage ? (
               <img
                 src={notice.photoUrl!}
                 alt='공지 이미지'
-                className='w-10 h-10 rounded-md object-cover'
+                className='w-[52px]h-[52px] rounded-md object-cover'
               />
             ) : (
               <img
