@@ -7,6 +7,18 @@ const getCurrentTime = () => {
   return `${currentHour}:${currentMinute}`;
 };
 
+const getCurrentMonth = () => {
+  const currentTime = new Date();
+  const currentMonth = currentTime.getMonth();
+  return currentMonth;
+};
+
+const getCurrentDay = () => {
+  const currentTime = new Date();
+  const currentDay = currentTime.getDate();
+  return currentDay;
+};
+
 const parseTimeString = (timeString: string) => {
   const [hour, minute] = timeString.split(':').map(Number);
   return { hour, minute };
@@ -30,4 +42,10 @@ const isTimeBetween = (
   );
 };
 
-export { getCurrentTime, parseTimeString, isTimeBetween };
+export {
+  getCurrentTime,
+  getCurrentMonth,
+  getCurrentDay,
+  parseTimeString,
+  isTimeBetween,
+};
