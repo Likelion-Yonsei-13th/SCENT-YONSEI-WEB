@@ -38,7 +38,7 @@ export default function Notice() {
     const newCategory = selectedCategory === category ? '' : category;
     setSelectedCategory(newCategory);
     setSearchKeyword('');
-    fetchNotices(newCategory);
+    setSearchFailed(false);
   };
 
   const handleSearch = (keyword: string) => {
@@ -51,8 +51,8 @@ export default function Notice() {
 
   // 최초 진입 시 전체 목록
   useEffect(() => {
-    fetchNotices('');
-  }, []);
+    fetchNotices(selectedCategory);
+  }, [selectedCategory]);
 
   return (
     <main>

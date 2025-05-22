@@ -17,6 +17,7 @@ export type Notice = {
 type NoticeListProps = {
   noticeList: Notice[];
   selectedCategory: string;
+  searchKeyword: string;
 };
 
 export default function NoticeList({
