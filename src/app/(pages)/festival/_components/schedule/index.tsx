@@ -11,7 +11,7 @@ export const Schedule = async () => {
       <div className='h-full w-fit flex flex-col gap-6'>
         <Tabs />
         <LocationDropdown />
-        <Calendar day2={day2} day3={day3} day4={day4} />
+        {/* <Calendar day2={day2} day3={day3} day4={day4} /> */}
       </div>
     </div>
   );

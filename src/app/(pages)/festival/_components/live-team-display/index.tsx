@@ -7,7 +7,7 @@ export const LiveShowDisplay = ({ showData }: { showData: ShowData }) => {
   const { liveShows } = useLiveShow({ showData });
 
   return (
-    <div className='w-full shrink-0 flex items-center justify-center px-6 h-[176px] '>
+    <div className='w-full shrink-0 flex items-center justify-center px-6 h-[176px] z-10'>
       <div className='size-full flex flex-col items-center justify-center relative rounded-full bg-gradient-to-r from-[rgba(196,228,255,0.50)] from-[14.21%] to-[rgba(108,180,239,0.50)] to-[84.39%] backdrop-blur-[2.5px]'>
         <div className='z-1 flex items-center justify-center gap-[30px]'>
           {liveShows.map(show => (
