@@ -20,6 +20,14 @@
   z-index: -1;
 }
 
+.mainpage-background {
+  position: relative;
+  z-index: 0;
+  background: url('/img/mainpage/mainpage-bg.png') lightgray 50% 0 / 100% auto no-repeat;
+  background-attachment: scroll;
+}
+
+
 .makers-background {
   position: relative;
   z-index: 2;
