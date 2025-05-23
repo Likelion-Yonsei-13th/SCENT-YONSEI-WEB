@@ -12,12 +12,8 @@ export default function MainPage() {
       <TopBar title="" />
 
       <main className="flex flex-col">
-        <div className="w-full mt-[121px]">
-          <img
-            src="/img/mainpage/mainpage-logo.png"
-            alt="메인페이지 로고"
-            className="h-auto w-full"
-          />
+        <div className="w-full h-[530px] mt-[121px] bg-[url(/img/mainpage/mainpage-logo.png)] 
+                        bg-gray-300 bg-blend-screen bg-cover bg-center bg-no-repeat">
         </div>
 
         <section className="w-full flex flex-col items-center gap-[48px] mt-10 mx-auto">
