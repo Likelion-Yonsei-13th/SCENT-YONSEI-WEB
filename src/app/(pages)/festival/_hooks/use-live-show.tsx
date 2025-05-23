@@ -1,10 +1,4 @@
-import { useDayTabQueryState } from './use-day-tab-query-state';
-import {
-  getCurrentDay,
-  getCurrentMonth,
-  getCurrentTime,
-  isTimeBetween,
-} from '../_utils/time';
+import { getCurrentDay, getCurrentTime, isTimeBetween } from '../_utils/time';
 import { type ShowListItem } from '../_repository/festival.types';
 import React from 'react';
 
@@ -14,23 +8,12 @@ export interface ShowData {
   day4: ShowListItem[];
 }
 
-const days = [28, 29, 30];
-
 export const useLiveShow = ({ showData }: { showData: ShowData }) => {
-  const { currentDay: currentSelectedDay } = useDayTabQueryState();
-
-  // const currentTime = '17:15';
-  const currentMonth = getCurrentMonth();
+  const [currentTime, setCurrentTime] = React.useState(() => getCurrentTime());
   const currentDay = getCurrentDay();
-  const currentTime = getCurrentTime();
 
-  const currentDayShow = React.useMemo(() => {
-    // 자바스크립트는 1월을 0으로 표시함
-    if (currentMonth !== 4) return [];
-    if (!days.includes(currentDay)) return [];
-
-    return showData[`day${currentSelectedDay}` as keyof typeof showData];
-  }, [currentMonth, currentDay, showData, currentSelectedDay]);
+  const currentDayShow =
+    showData[`day${currentDay - 26}` as keyof typeof showData] ?? [];
 
   const liveShows = currentDayShow.filter(show =>
     isTimeBetween(show.start_at, show.finish_at, currentTime),
@@ -40,5 +23,12 @@ export const useLiveShow = ({ showData }: { showData: ShowData }) => {
     return liveShows.some(show => show.showId === showId);
   };
 
-  return { liveShows, checkIsLiveShow };
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(getCurrentTime());
+    }, 500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return { liveShows, checkIsLiveShow, currentTime };
 };

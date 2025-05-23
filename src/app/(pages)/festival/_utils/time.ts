@@ -4,6 +4,8 @@ const getCurrentTime = () => {
   const currentHour = currentTime.getHours();
   const currentMinute = currentTime.getMinutes();
 
+  // for test purpose
+  // return `16:${currentMinute}`;
   return `${currentHour}:${currentMinute}`;
 };
 
@@ -16,6 +18,9 @@ const getCurrentMonth = () => {
 const getCurrentDay = () => {
   const currentTime = new Date();
   const currentDay = currentTime.getDate();
+
+  // for test purpose
+  // return 29;
   return currentDay;
 };
 
@@ -29,17 +34,11 @@ const isTimeBetween = (
   endTime: string,
   currentTime: string,
 ) => {
-  const { hour: startHour, minute: startMinute } = parseTimeString(startTime);
-  const { hour: endHour, minute: endMinute } = parseTimeString(endTime);
-  const { hour: currentHour, minute: currentMinute } =
-    parseTimeString(currentTime);
+  const startMinutes = parseTime(startTime);
+  const endMinutes = parseTime(endTime);
+  const currentMinutes = parseTime(currentTime);
 
-  return (
-    currentHour >= startHour &&
-    currentHour <= endHour &&
-    currentMinute >= startMinute &&
-    currentMinute <= endMinute
-  );
+  return currentMinutes >= startMinutes && currentMinutes < endMinutes;
 };
 
 const parseTime = (timeStr: string) => {

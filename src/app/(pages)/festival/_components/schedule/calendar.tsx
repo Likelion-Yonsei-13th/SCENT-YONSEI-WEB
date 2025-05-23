@@ -1,14 +1,17 @@
 'use client';
 import React, { useMemo } from 'react';
 import { useDayTabQueryState } from '../../_hooks/use-day-tab-query-state';
-import { type ShowData } from '../../_hooks/use-live-show';
+import { useLiveShow, type ShowData } from '../../_hooks/use-live-show';
 import { timeTable } from '../../_constants/time-table';
 import { type ShowListItem } from '../../_repository/festival.types';
-import { formatTime } from '../../_utils/time';
+import { formatTime, getCurrentDay } from '../../_utils/time';
 import { parseTime } from '../../_utils/time';
 import { cn } from '@/app/_core/utils/cn';
 
 export const Calendar = ({ day2, day3, day4 }: ShowData) => {
+  const { checkIsLiveShow, currentTime } = useLiveShow({
+    showData: { day2, day3, day4 },
+  });
   const { currentDay } = useDayTabQueryState();
   const [currentLocation, setCurrentLocation] =
     React.useState<keyof typeof timeTable>('언기도');
@@ -87,6 +90,34 @@ export const Calendar = ({ day2, day3, day4 }: ShowData) => {
     return timeLines;
   }, [timeRange]);
 
+  const liveLineData = React.useMemo(() => {
+    if (!currentTime) {
+      return { isVisible: false, top: 0 };
+    }
+
+    const currentMinutes = parseTime(currentTime);
+    const startMinutes = parseTime(timeRange.startTime);
+    const endMinutes = parseTime(timeRange.endTime);
+
+    const isWithinSchedule =
+      currentMinutes >= startMinutes && currentMinutes <= endMinutes;
+
+    if (!isWithinSchedule || getCurrentDay() - 26 !== +currentDay) {
+      return { isVisible: false, top: 0 };
+    }
+
+    const timeProgress =
+      (currentMinutes - startMinutes) / (endMinutes - startMinutes);
+    const headerHeight = 56;
+    const timelineHeight = Math.ceil((endMinutes - startMinutes) / 15) * 117.02;
+    const topPosition = headerHeight + timeProgress * timelineHeight;
+
+    return {
+      isVisible: true,
+      top: topPosition,
+    };
+  }, [currentDay, currentTime, timeRange.endTime, timeRange.startTime]);
+
   React.useEffect(() => {
     if (currentDay === '2') {
       setCurrentLocation('언기도');
@@ -101,11 +132,21 @@ export const Calendar = ({ day2, day3, day4 }: ShowData) => {
         {timeLines}
       </div>
       <TimeBlocks
+        checkIsLiveShow={checkIsLiveShow}
         shows={preProcessedShows}
         tabs={tabs}
         currentLocation={currentLocation}
         setCurrentLocation={setCurrentLocation}
       />
+      {liveLineData.isVisible && (
+        <LiveLine
+          positionStyle={{
+            top: `${liveLineData.top}px`,
+            left: 4,
+            width: 'calc(100% - 4px)',
+          }}
+        />
+      )}
     </div>
   );
 };
@@ -122,11 +163,13 @@ const TimeLine = ({ time }: { time: string }) => {
 };
 
 const TimeBlocks = ({
+  checkIsLiveShow,
   shows,
   tabs,
   currentLocation,
   setCurrentLocation,
 }: {
+  checkIsLiveShow: (showId: ShowListItem['showId']) => boolean;
   shows: ShowListItem[];
   tabs: (keyof typeof timeTable)[];
   currentLocation: keyof typeof timeTable;
@@ -148,21 +191,31 @@ const TimeBlocks = ({
           </p>
         ))}
       </div>
-      <div className='flex flex-col'>
+      <div className='flex flex-col gap-1'>
         {shows.map((show, idx) => (
-          <TimeBlock key={idx} show={show} />
+          <TimeBlock
+            key={idx}
+            show={show}
+            isLive={checkIsLiveShow(show.showId)}
+          />
         ))}
       </div>
     </div>
   );
 };
 
-const TimeBlock = ({ show }: { show: ShowListItem }) => {
+const TimeBlock = ({
+  show,
+  isLive,
+}: {
+  show: ShowListItem;
+  isLive: boolean;
+}) => {
   const height = React.useMemo(() => {
     const startMinutes = parseTime(show.start_at);
     const endMinutes = parseTime(show.finish_at);
 
-    return ((endMinutes - startMinutes) / 15) * 117.02;
+    return ((endMinutes - startMinutes) / 15) * 117.02 - 4;
   }, [show]);
 
   const isDummyShow = show.title === '';
@@ -175,7 +228,7 @@ const TimeBlock = ({ show }: { show: ShowListItem }) => {
     <div
       className={cn(
         'flex items-center justify-center rounded-[20px] border-1 border-gray100 bg-white shadow-[0px_0px_5px_0px_rgba(209,214,220,0.50)] w-full',
-        false &&
+        isLive &&
           'shadow-[0px_0px_8px_0px_rgba(170,207,248,0.50)] border-light500',
       )}
       style={{ height: `${height}px` }}
@@ -185,11 +238,29 @@ const TimeBlock = ({ show }: { show: ShowListItem }) => {
           {show.title}
         </p>
         <p className='text-label-s text-main100'>상세 정보</p>
-        <div className='flex items-center justify-center gap-2'>
+        <div className='flex items-center justify-center gap-1'>
           <p className='text-label-s text-gray500'>{show.start_at}</p>
+          <p className='text-label-s text-gray500'>~</p>
           <p className='text-label-s text-gray500'>{show.finish_at}</p>
         </div>
       </div>
+    </div>
+  );
+};
+
+const LiveLine = ({
+  positionStyle,
+}: {
+  positionStyle: React.CSSProperties;
+}) => {
+  return (
+    <div
+      className={cn('absolute w-full bg-[#FE4646] h-[1px]')}
+      style={positionStyle}
+    >
+      <p className='absolute left-0 top-1/2 -translate-y-1/2 bg-[#FE4646] text-white000 text-[10px] !font-semibold px-2 py-1 rounded-full'>
+        LIVE
+      </p>
     </div>
   );
 };
