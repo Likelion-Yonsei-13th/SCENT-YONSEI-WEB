@@ -20,11 +20,59 @@ export const Calendar = ({ day2, day3, day4 }: ShowData) => {
     return ['동문광장', '노천극장'];
   }, [currentDay]);
 
-  const shows = useMemo(() => {
+  const rawShows = useMemo(() => {
     if (currentDay === '2') return day2;
-    if (currentDay === '3') return day3;
-    return day4;
-  }, [currentDay, day2, day3, day4]);
+    if (currentDay === '3')
+      return day3.filter(show => show.section === currentLocation);
+    return day4.filter(show => show.section === currentLocation);
+  }, [currentDay, day2, day3, day4, currentLocation]);
+
+  const preProcessedShows = React.useMemo(() => {
+    const startMinutes = parseTime(timeRange.startTime);
+    const endMinutes = parseTime(timeRange.endTime);
+    const processedShows: ShowListItem[] = [];
+
+    const sortedShows = [...rawShows].sort(
+      (a, b) => parseTime(a.start_at) - parseTime(b.start_at),
+    );
+
+    let currentTime = startMinutes;
+
+    for (const show of sortedShows) {
+      const showStartMinutes = parseTime(show.start_at);
+      const showEndMinutes = parseTime(show.finish_at);
+
+      if (currentTime < showStartMinutes) {
+        const dummyShow: ShowListItem = {
+          showId: -Math.abs(currentTime),
+          title: '',
+          start_at: formatTime(currentTime),
+          finish_at: formatTime(showStartMinutes),
+          section: currentLocation,
+          photo: undefined,
+        };
+        processedShows.push(dummyShow);
+      }
+
+      processedShows.push(show);
+
+      currentTime = showEndMinutes;
+    }
+
+    if (currentTime < endMinutes) {
+      const dummyShow: ShowListItem = {
+        showId: -Math.abs(currentTime),
+        title: '',
+        start_at: formatTime(currentTime),
+        finish_at: formatTime(endMinutes),
+        section: currentLocation,
+        photo: undefined,
+      };
+      processedShows.push(dummyShow);
+    }
+
+    return processedShows;
+  }, [rawShows, timeRange, currentLocation]);
 
   const timeLines = React.useMemo(() => {
     const timeLines = [];
@@ -53,7 +101,7 @@ export const Calendar = ({ day2, day3, day4 }: ShowData) => {
         {timeLines}
       </div>
       <TimeBlocks
-        shows={shows}
+        shows={preProcessedShows}
         tabs={tabs}
         currentLocation={currentLocation}
         setCurrentLocation={setCurrentLocation}
@@ -85,8 +133,8 @@ const TimeBlocks = ({
   setCurrentLocation: (location: keyof typeof timeTable) => void;
 }) => {
   return (
-    <div className='absolute size-full pl-20 flex flex-col top-0 left-0'>
-      <div className='flex gap-2 items-center justify-around h-14 w-full'>
+    <div className='absolute size-full pl-20 flex flex-col top-0 left-0 gap-[0.5px]'>
+      <div className='flex gap-2 items-center justify-around h-14 w-full shrink-0'>
         {tabs.map(tab => (
           <p
             key={tab}
@@ -100,17 +148,48 @@ const TimeBlocks = ({
           </p>
         ))}
       </div>
+      <div className='flex flex-col'>
+        {shows.map((show, idx) => (
+          <TimeBlock key={idx} show={show} />
+        ))}
+      </div>
     </div>
   );
 };
 
-const TimeBlock = ({
-  startTime,
-  endTime,
-}: {
-  startTime: string;
-  endTime: string;
-  show: ShowListItem;
-}) => {
-  return <div></div>;
+const TimeBlock = ({ show }: { show: ShowListItem }) => {
+  const height = React.useMemo(() => {
+    const startMinutes = parseTime(show.start_at);
+    const endMinutes = parseTime(show.finish_at);
+
+    return ((endMinutes - startMinutes) / 15) * 117.02;
+  }, [show]);
+
+  const isDummyShow = show.title === '';
+
+  if (isDummyShow) {
+    return <div className='w-full' style={{ height: `${height}px` }} />;
+  }
+
+  return (
+    <div
+      className={cn(
+        'flex items-center justify-center rounded-[20px] border-1 border-gray100 bg-white shadow-[0px_0px_5px_0px_rgba(209,214,220,0.50)] w-full',
+        false &&
+          'shadow-[0px_0px_8px_0px_rgba(170,207,248,0.50)] border-light500',
+      )}
+      style={{ height: `${height}px` }}
+    >
+      <div className='flex flex-col gap-4 items-center justify-center'>
+        <p className='text-headline-m text-black000 !font-semibold'>
+          {show.title}
+        </p>
+        <p className='text-label-s text-main100'>상세 정보</p>
+        <div className='flex items-center justify-center gap-2'>
+          <p className='text-label-s text-gray500'>{show.start_at}</p>
+          <p className='text-label-s text-gray500'>{show.finish_at}</p>
+        </div>
+      </div>
+    </div>
+  );
 };
