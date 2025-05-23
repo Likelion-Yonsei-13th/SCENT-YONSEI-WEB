@@ -32,8 +32,29 @@ export default function MainPage() {
         </section>
         
         <div className='flex flex-col items-center gap-[22px] mt-[57px] mb-[87px]'>
-          <Button href='/booth'>부스 정보 보러가기</Button>
-          <Button href='/festival'>공연 정보 보러가기</Button>
+          
+          <InView 
+              variants={{
+                hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+                visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+              }}
+              viewOptions={{ margin: '0px 0px -100px 0px' }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+            >
+            <Button href='/booth'>부스 정보 보러가기</Button>
+          </InView>
+
+          <InView 
+              variants={{
+                hidden: { opacity: 0, y: 100, filter: 'blur(4px)' },
+                visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
+              }}
+              viewOptions={{ margin: '0px 0px -100px 0px' }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+            >
+            <Button href='/festival'>공연 정보 보러가기</Button>
+          </InView>
+
         </div>
 
       </main>
