@@ -67,7 +67,9 @@ export default function NoticeItem({ notice }: NoticeItemProps) {
           >
             {notice.title}
           </p>
-          <span className='text-sm text-gray-400 ml-3'>{formattedDate}</span>
+          <span className='text-sm text-[rgba(181,187,193,1)] ml-3'>
+            {formattedDate}
+          </span>
         </div>
       </motion.div>
     </Link>

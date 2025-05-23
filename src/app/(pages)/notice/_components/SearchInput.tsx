@@ -26,7 +26,7 @@ export default function SearchInput({
       <img
         src='/svg/notice/search.svg'
         alt='검색아이콘'
-        className='absolute left-3 top-1/2 -translate-y-1/2 transform h-5 text-gray-400'
+        className='absolute left-3 top-1/2 -translate-y-1/2 transform h-5 text-[rgba(181,187,193,1)]'
       />
       <input
         type='text'
