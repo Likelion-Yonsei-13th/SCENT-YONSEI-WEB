@@ -7,6 +7,7 @@ import { type ShowListItem } from '../../_repository/festival.types';
 import { formatTime, getCurrentDay } from '../../_utils/time';
 import { parseTime } from '../../_utils/time';
 import { cn } from '@/app/_core/utils/cn';
+import { useRouter } from 'next/navigation';
 
 export const Calendar = ({ day2, day3, day4 }: ShowData) => {
   const { checkIsLiveShow, currentTime } = useLiveShow({
@@ -211,6 +212,7 @@ const TimeBlock = ({
   show: ShowListItem;
   isLive: boolean;
 }) => {
+  const router = useRouter();
   const height = React.useMemo(() => {
     const startMinutes = parseTime(show.start_at);
     const endMinutes = parseTime(show.finish_at);
@@ -226,6 +228,7 @@ const TimeBlock = ({
 
   return (
     <div
+      onClick={() => router.push(`/festival/${show.showId}`)}
       className={cn(
         'flex items-center justify-center rounded-[20px] border-1 border-gray100 bg-white shadow-[0px_0px_5px_0px_rgba(209,214,220,0.50)] w-full',
         isLive &&

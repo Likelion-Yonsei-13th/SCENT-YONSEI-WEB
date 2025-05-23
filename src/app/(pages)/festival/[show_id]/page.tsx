@@ -24,8 +24,6 @@ const FestivalShowPage = async ({
 
   const result = await festivalRepository.getShowDetail(show_id);
 
-  console.log(result);
-
   return (
     <div className='flex flex-col gap-5 size-full items-center justify-start pt-10 px-6'>
       <Image
@@ -37,7 +35,9 @@ const FestivalShowPage = async ({
       />
       <div className='rounded-[20px] bg-white000 px-6 py-8 flex flex-col gap-6 w-full'>
         <div className='flex flex-col gap-1'>
-          <InstagramInfoBadge instagram={result.data.instagram} />
+          {result.data.instagram && (
+            <InstagramInfoBadge instagram={result.data.instagram} />
+          )}
           <div className='flex items-center gap-1'>
             <CalendarIcon />
             <p className='text-label-l text-gray600 !font-semibold leading-[18px]'>
@@ -50,17 +50,21 @@ const FestivalShowPage = async ({
               {result.data.start_at} ~ {result.data.finish_at}
             </p>
           </div>
-          <div className='flex items-center gap-1'>
-            <LocationIcon />
-            <p className='text-label-l text-gray600 !font-semibold leading-[18px]'>
-              {result.data.section}
-            </p>
-          </div>
+          {result.data.section && (
+            <div className='flex items-center gap-1'>
+              <LocationIcon />
+              <p className='text-label-l text-gray600 !font-semibold leading-[18px]'>
+                {result.data.section}
+              </p>
+            </div>
+          )}
         </div>
         <hr className='border-gray300' />
-        <p className='text-label-l text-black000 font-normal leading-[18px]'>
-          {result.data.description}
-        </p>
+        {result.data.description && (
+          <p className='text-label-l text-black000 font-normal leading-[18px]'>
+            {result.data.description}
+          </p>
+        )}
       </div>
     </div>
   );
