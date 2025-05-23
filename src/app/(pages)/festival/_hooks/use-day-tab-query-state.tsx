@@ -1,7 +1,7 @@
 'use client';
 
 import { useQueryState } from 'nuqs';
-import { dayTabs, type dayTabValues } from '../constants/tabs';
+import { dayTabs, type dayTabValues } from '../_constants/tabs';
 import { useCallback } from 'react';
 
 export const useDayTabQueryState = () => {

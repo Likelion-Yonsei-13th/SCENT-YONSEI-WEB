@@ -1,7 +1,7 @@
 'use client';
 
 import { useDayTabQueryState } from '@/app/(pages)/festival/_hooks/use-day-tab-query-state';
-import { dayTabs } from '../../constants/tabs';
+import { dayTabs } from '../../_constants/tabs';
 import { cn } from '@/app/_core/utils/cn';
 
 const tabButtonClassName =
