@@ -42,10 +42,23 @@ const isTimeBetween = (
   );
 };
 
+const parseTime = (timeStr: string) => {
+  const [hours, minutes] = timeStr.split(':').map(Number);
+  return hours * 60 + minutes;
+};
+
+const formatTime = (totalMinutes: number) => {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+};
+
 export {
   getCurrentTime,
   getCurrentMonth,
   getCurrentDay,
   parseTimeString,
   isTimeBetween,
+  parseTime,
+  formatTime,
 };
