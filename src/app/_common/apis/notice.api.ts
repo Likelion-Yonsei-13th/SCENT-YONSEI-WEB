@@ -1,8 +1,8 @@
 'use server';
 
 import {
-  NoticeListResponse,
-  NoticeDetailResponse,
+  type NoticeListResponse,
+  type NoticeDetailResponse,
 } from '@/app/_common/interfaces/notice.interface';
 
 /**

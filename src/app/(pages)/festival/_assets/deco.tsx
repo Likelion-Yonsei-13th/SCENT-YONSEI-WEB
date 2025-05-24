@@ -8,7 +8,6 @@ const Deco1 = () => (
   >
     <foreignObject x='-14' y='-8' width='88' height='88'>
       <div
-        xmlns='http://www.w3.org/1999/xhtml'
         style={{
           backdropFilter: 'blur(4px)',
           clipPath: 'url(#bgblur_0_1491_522_clip_path)',
@@ -89,7 +88,6 @@ const Deco3 = () => (
   >
     <foreignObject x='-8' y='-8' width='68' height='68'>
       <div
-        xmlns='http://www.w3.org/1999/xhtml'
         style={{
           backdropFilter: 'blur(4px)',
           clipPath: 'url(#bgblur_0_1491_523_clip_path)',
