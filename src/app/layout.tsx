@@ -27,8 +27,9 @@ export default function RootLayout({
         {/* viewport 설정 */}
         <meta
           name='viewport'
-          content='width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover'
+          content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'
         />
+        <meta name='theme-color' content='#44BDF5' />
       </head>
       <body>
         {process.env.GOOGLE_ANALYTICS_ID && (
@@ -37,7 +38,7 @@ export default function RootLayout({
         <GlobalProvider>
           <main
             id='main-layout'
-            className='main-background mx-auto min-w-[320px] max-w-[500px] w-full h-screen'
+            className='main-background mx-auto min-w-[320px] max-w-[500px] w-full'
           >
             {children}
           </main>
