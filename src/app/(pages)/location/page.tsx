@@ -1,6 +1,7 @@
 import { TopBar } from '@/app/_common/components/top-bar';
 import Image from 'next/image';
 import { DropDown } from './_components/dropdown';
+import { Suspense } from 'react';
 
 export default function LocationsPage() {
   return (
@@ -24,8 +25,10 @@ export default function LocationsPage() {
         </div>
 
         {/* 주요 위치 컴포넌트 */}
-        <DropDown category='trash' />
-        <DropDown category='wheelchair' />
+        <Suspense fallback={<></>}>
+          <DropDown category='trash' />
+          <DropDown category='wheelchair' />
+        </Suspense>
       </main>
     </div>
   );
