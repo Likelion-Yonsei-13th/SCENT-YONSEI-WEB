@@ -6,8 +6,6 @@ import Image from 'next/image';
 import { sections } from '../../types/booth-union.type';
 import { parseAsStringLiteral, useQueryState } from 'nuqs';
 import { useEffect, useState } from 'react';
-import Zoom from 'react-medium-image-zoom';
-import 'react-medium-image-zoom/dist/styles.css';
 
 export function BoothSection() {
   const [sectionState, setSectionState] = useQueryState(

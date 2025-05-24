@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import 'react-medium-image-zoom/dist/styles.css';
-import { Section } from '@/app/(pages)/booth/types/booth-union.type';
+import { type Section } from '@/app/(pages)/booth/types/booth-union.type';
+
 export function BoothLocation({ section }: { section: Section }) {
   const imageUrl = {
     백양로: '/img/booth/baekyang-section.jpg',
