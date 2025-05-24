@@ -28,7 +28,7 @@ export default function TopMenuSheet() {
           }}
         >
           <SheetHeader className='pt-30 pl-3 flex flex-col'>
-            <SheetTitle className='bg-opacity-100' />
+            <SheetTitle className='bg-opacity-100 hidden' />
             <SheetDescription className='pl-2'>
               {sheetLink.map(link => (
                 <span key={link.href} className='w-full flex flex-col'>

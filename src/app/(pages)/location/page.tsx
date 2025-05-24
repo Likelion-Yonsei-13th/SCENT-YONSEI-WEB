@@ -4,7 +4,7 @@ import { DropDown } from './_components/dropdown';
 
 export default function LocationsPage() {
   return (
-    <div className='relative main-background w-full min-h-screen flex-col'>
+    <div className='relative main-background w-full min-h-screen flex flex-col'>
       {/* 고정된 TopBar */}
       <TopBar
         title='주요 시설 위치'
@@ -12,7 +12,7 @@ export default function LocationsPage() {
       />
 
       {/* TopBar 아래 컴포넌트들 */}
-      <main className='pt-36 pb-6 px-7 w-full flex flex-col scrollbar-hide scroll-smooth space-y-6'>
+      <main className='pt-30 pb-6 px-7 w-full flex flex-col scrollbar-hide scroll-smooth space-y-6'>
         {/* 지도 */}
         <div className='relative w-full h-auto aspect-[316/221] rounded-[10px] bg-gray-300 overflow-hidden'>
           <Image
