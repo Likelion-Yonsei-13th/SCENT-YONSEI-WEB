@@ -1,7 +1,7 @@
 import { TopBar } from '@/app/_common/components/top-bar';
 import DayCard from './components/day-card';
 import { DayCardData } from './components/day-card-data';
-import UnderBar from '@/app/_common/components/underbar';
+import Footer from '@/app/_common/components/underbar';
 import Button from './components/button';
 import { InView } from '@/app/_core/components/in-view';
 
@@ -53,7 +53,7 @@ export default function MainPage() {
         </div>
       </main>
       <footer className='flex items-center justify-center'>
-        <UnderBar />
+        <Footer />
       </footer>
     </div>
   );
