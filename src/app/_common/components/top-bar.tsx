@@ -11,7 +11,7 @@ export function TopBar({
   bgClassName?: string;
 }) {
   return (
-    <nav className='fixed top-0 z-20 w-full'>
+    <nav className='fixed top-0 z-20 w-full max-w-[500px] mx-auto'>
       <div className={cn('absolute inset-0 z-[-1]', bgClassName)} />
 
       <div className='px-6 py-5 w-full flex justify-between items-center text-white'>
