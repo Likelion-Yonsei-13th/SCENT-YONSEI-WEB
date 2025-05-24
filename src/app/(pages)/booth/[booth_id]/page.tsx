@@ -20,8 +20,12 @@ export default async function BoothDetailPage({
 
   return (
     <div className='relative w-full h-full flex flex-col'>
-      <TopBar title='부스명' bgClassName='backdrop-blur-md bg-white/20' />
-      <main className='px-6 pt-30 pb-18 w-full h-full flex flex-col items-center gap-5 overflow-y-auto scrollbar-hide scroll-smooth'>
+      <TopBar
+        hasDepth={true}
+        title={boothDetail.name}
+        bgClassName='backdrop-blur-md bg-white/20'
+      />
+      <main className='px-6 pt-37 pb-18 w-full h-full flex flex-col items-center gap-5 overflow-y-auto scrollbar-hide scroll-smooth'>
         <ImgCarousel
           imagesUrl={[]}
           boothName={boothDetail.name}

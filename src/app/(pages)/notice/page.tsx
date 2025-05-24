@@ -7,6 +7,7 @@ import NoticeList from './_components/NoticeList';
 import SearchInput from './_components/SearchInput';
 import { getNoticeList } from '@/app/_common/apis/notice.api';
 import { type NoticeListItem } from '@/app/_common/interfaces/notice.interface';
+import { Loader } from '@/app/_common/components/loader';
 
 export default function Notice() {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
@@ -74,7 +75,7 @@ export default function Notice() {
         <div className='mt-6 min-h-[200px]'>
           {loading ? (
             <div className='flex items-center justify-center min-h-[7vh]'>
-              <p className='text-white text-sm'>불러오는 중...</p>
+              <Loader />
             </div>
           ) : noticeList.length === 0 ? (
             <div className='flex items-center justify-center min-h-[7vh]'>
