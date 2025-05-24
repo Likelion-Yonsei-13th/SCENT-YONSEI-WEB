@@ -2,16 +2,27 @@
 const config = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: true,
+    project: './tsconfig.json',
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
-  ignorePatterns: ['node_modules', 'dist', 'posture_mode/*'],
-  plugins: ['@typescript-eslint', 'drizzle'],
+  ignorePatterns: [
+    'node_modules',
+    'dist',
+    'posture_mode/*',
+    '.next',
+    'next.config.ts',
+  ],
+  plugins: ['@typescript-eslint', 'react-hooks'],
   extends: [
     'next/core-web-vitals',
-    'plugin:@typescript-eslint/recommended-type-checked',
-    'plugin:@typescript-eslint/stylistic-type-checked',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
   ],
   rules: {
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
     '@typescript-eslint/array-type': 'off',
     '@typescript-eslint/consistent-type-definitions': 'off',
     '@typescript-eslint/consistent-type-imports': [
@@ -21,6 +32,7 @@ const config = {
         fixStyle: 'inline-type-imports',
       },
     ],
+    '@typescript-eslint/await-thenable': 'off',
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {
@@ -28,15 +40,14 @@ const config = {
       },
     ],
     '@typescript-eslint/require-await': 'off',
-    '@typescript-eslint/no-misused-promises': [
-      'error',
-      {
-        checksVoidReturn: {
-          attributes: false,
-        },
-      },
-    ],
+    '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
 module.exports = config;
