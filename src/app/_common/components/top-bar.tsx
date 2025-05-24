@@ -11,10 +11,10 @@ export function TopBar({
   bgClassName?: string;
 }) {
   return (
-    <nav className='absolute top-0 z-20 w-full'>
+    <nav className='fixed top-0 z-20 w-full'>
       <div className={cn('absolute inset-0 z-[-1]', bgClassName)} />
 
-      <div className='px-6 pt-16 pb-3 w-full flex justify-between items-center text-white'>
+      <div className='px-6 py-5 w-full flex justify-between items-center text-white'>
         <TopMenuSheet />
         <p className='text-display-m'>{title}</p>
         <Link
