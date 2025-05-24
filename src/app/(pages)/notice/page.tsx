@@ -75,7 +75,7 @@ export default function Notice() {
         <div className='mt-6 min-h-[200px]'>
           {loading ? (
             <div className='flex items-center justify-center min-h-[7vh]'>
-              <p className='text-white text-sm'>불러오는 중...</p>
+              <p className='text-white text-sm'> </p>
             </div>
           ) : noticeList.length === 0 ? (
             <div className='flex items-center justify-center min-h-[7vh]'>
