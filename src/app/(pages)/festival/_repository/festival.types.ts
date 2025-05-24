@@ -44,7 +44,7 @@ export interface ShowDetail {
   start_at: string;
   finish_at: string;
   description: string;
-  photo: string;
+  photo: string[];
 }
 
 export type ShowDetailResponse = ApiResponse<ShowDetail>;

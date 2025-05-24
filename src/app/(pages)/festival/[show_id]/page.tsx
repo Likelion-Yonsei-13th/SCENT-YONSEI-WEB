@@ -1,7 +1,8 @@
-import Image from 'next/image';
 import { festivalRepository } from '../_repository/festival.repository';
-import { CalendarIcon, LocationIcon, TimeIcon } from '../_assets/icons';
+import { LocationIcon, TimeIcon } from '../_assets/icons';
 import { InstagramInfoBadge } from './_components/instagram-info-badge';
+import { TopBar } from '@/app/_common/components/top-bar';
+import { ImgCarousel } from '../../booth/_components/booth-detail/img-carousel';
 
 export const revalidate = 3600;
 
@@ -25,25 +26,27 @@ const FestivalShowPage = async ({
   const result = await festivalRepository.getShowDetail(show_id);
 
   return (
-    <div className='flex flex-col gap-5 size-full items-center justify-start pt-10 px-6'>
-      <Image
-        src={result.data.photo[0] || ''}
-        alt='festival-show-image'
-        width={400}
-        height={400}
-        className='rounded-[10px] w-full h-auto bg-gray300 aspect-square'
+    <div className='flex flex-col gap-5 size-full items-center justify-start pt-28 px-6'>
+      <TopBar
+        title={result.data.title}
+        bgClassName='backdrop-blur-md bg-white/20'
+        hasDepth
+      />
+      <ImgCarousel
+        imagesUrl={[...result.data.photo]}
+        boothName={result.data.title}
       />
       <div className='rounded-[20px] bg-white000 px-6 py-8 flex flex-col gap-6 w-full'>
         <div className='flex flex-col gap-1'>
           {result.data.instagram && (
             <InstagramInfoBadge instagram={result.data.instagram} />
           )}
-          <div className='flex items-center gap-1'>
+          {/* <div className='flex items-center gap-1'>
             <CalendarIcon />
             <p className='text-label-l text-gray600 !font-semibold leading-[18px]'>
               DAY2 28일
             </p>
-          </div>
+          </div> */}
           <div className='flex items-center gap-1'>
             <TimeIcon />
             <p className='text-label-l text-gray600 !font-semibold leading-[18px]'>
@@ -66,6 +69,7 @@ const FestivalShowPage = async ({
           </p>
         )}
       </div>
+      <div className='h-8' />
     </div>
   );
 };
