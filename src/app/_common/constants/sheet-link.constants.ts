@@ -4,7 +4,7 @@ export const sheetLink = [
     label: '홈',
   },
   {
-    href: '/notifications',
+    href: '/notice',
     label: '공지사항',
   },
   {

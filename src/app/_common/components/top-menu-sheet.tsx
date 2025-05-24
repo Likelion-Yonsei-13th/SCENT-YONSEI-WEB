@@ -15,7 +15,7 @@ import { sheetLink } from '../constants/sheet-link.constants';
 export default function TopMenuSheet() {
   return (
     <Sheet>
-      <SheetTrigger asChild>
+      <SheetTrigger className='w-20 flex items-center justify-start'>
         <AlignJustify className='cursor-pointer' />
       </SheetTrigger>
       <SheetContent side='left' className='w-[80%]'>
