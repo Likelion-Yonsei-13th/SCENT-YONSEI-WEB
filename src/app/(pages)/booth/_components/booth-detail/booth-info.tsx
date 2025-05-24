@@ -36,7 +36,7 @@ export function BoothInfo({ boothDetail }: { boothDetail: BoothDetail }) {
             <Instagram />
           </span>
           <p className='px-2 py-1 text-gray600 text-label-s bg-gray300 rounded-full'>
-            {boothInfoList[0].value}
+            @{boothInfoList[0].value}
           </p>
         </Link>
 
@@ -58,6 +58,7 @@ export function BoothInfo({ boothDetail }: { boothDetail: BoothDetail }) {
           <p className='text-label-l text-gray600'>{boothInfoList[2].value}</p>
         </div>
       </div>
+
       <div className='w-full h-[1px] bg-gray300' />
 
       {/* booth introduce info */}

@@ -28,7 +28,7 @@ export const BACK_INFO = [
 
 export const MAKERS_INFO = [
   {
-    title: 'PM/Design',
+    title: 'PM / Design',
     info: PLAN_DESIGN_INFO,
   },
   {

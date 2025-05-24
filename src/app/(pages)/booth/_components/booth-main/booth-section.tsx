@@ -6,8 +6,11 @@ import Image from 'next/image';
 import { sections } from '../../types/booth-union.type';
 import { parseAsStringLiteral, useQueryState } from 'nuqs';
 import { useEffect, useState } from 'react';
+import ImageZoomModal from '@/app/_common/components/image-zoom-modal';
+import { Plus } from 'lucide-react';
 
 export function BoothSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [sectionState, setSectionState] = useQueryState(
     'section',
     parseAsStringLiteral(sections).withDefault('백양로'),
@@ -42,14 +45,6 @@ export function BoothSection() {
         ))}
       </span>
       {imageUrl ? (
-        // <Zoom
-        //   zoomImg={imageUrl}
-        //   zoomImgAlt='백양로'
-        //   zoomImgFill
-        //   zoomImgPriority
-        //   zoomImgSizes='100vw'
-        //   zoomImgClassName='object-cover rounded-[10px]'
-        // >
         <div className='relative w-full h-auto flex rounded-[10px] bg-gray300 aspect-[159/127]'>
           <Image
             src={imageUrl ?? ''}
@@ -59,12 +54,21 @@ export function BoothSection() {
             className='object-cover rounded-[10px]'
             priority
           />
-          {/* {imageUrl !== '' && imageUrl !== null && (
-            )} */}
+          <span
+            className='absolute bottom-2 right-2 bg-white000 rounded-full p-2 shadow-xl cursor-pointer hover:bg-light400 border border-point transition-all duration-300'
+            onClick={() => setIsModalOpen(true)}
+          >
+            <Plus className='size-6 text-point' />
+          </span>
         </div>
       ) : (
-        // </Zoom>
         <div className='relative w-full h-auto flex rounded-[10px] bg-gray300 aspect-[159/127]' />
+      )}
+      {isModalOpen && imageUrl && (
+        <ImageZoomModal
+          image={imageUrl}
+          onClose={() => setIsModalOpen(false)}
+        />
       )}
     </section>
   );

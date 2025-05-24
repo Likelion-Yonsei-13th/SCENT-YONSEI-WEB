@@ -6,7 +6,6 @@ import { BoothSection } from './_components/booth-main/booth-section';
 import { TabBooth } from './_components/booth-main/tab-booth';
 import { SearchBar } from './_components/booth-main/search-bar';
 import { BoothList } from './_components/booth-main/booth-list';
-import { type BoothListParams } from '@/app/_common/interfaces/booth.interface';
 import {
   BoothListKey,
   type BoothListRecord,
@@ -48,7 +47,7 @@ export default async function BoothPage() {
       className='relative w-full h-full flex flex-col items-center'
     >
       <TopBar title='부스' bgClassName='backdrop-blur-md bg-white/20' />
-      <main className='px-6 pt-30 w-full flex flex-col overflow-y-auto scrollbar-hide scroll-smooth'>
+      <main className='px-6 pt-30 pb-10 w-full flex flex-col overflow-y-auto scrollbar-hide scroll-smooth'>
         <Suspense fallback={<div>Loading...</div>}>
           <TabDay />
           <BoothSection />

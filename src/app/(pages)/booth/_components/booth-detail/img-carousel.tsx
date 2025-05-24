@@ -47,6 +47,7 @@ export function ImgCarousel({
                   src={url}
                   alt={`booth-image-${index}`}
                   fill
+                  sizes='100vw'
                   className='object-contain rounded-[20px]'
                 />
               )}
