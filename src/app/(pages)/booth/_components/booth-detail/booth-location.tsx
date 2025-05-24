@@ -12,8 +12,8 @@ export function BoothLocation({ section }: { section: Section }) {
       <h1 className='px-2 py-3 text-display-s text-black000'>위치</h1>
       <div className='relative w-full h-[calc(100%-48px)] flex rounded-[10px] aspect-[5/4]'>
         <Image
-          src={imageUrl[section]}
-          alt='백양로'
+          src={imageUrl[section] ?? ''}
+          alt={section}
           fill
           sizes='100vw'
           className='object-cover rounded-[10px]'

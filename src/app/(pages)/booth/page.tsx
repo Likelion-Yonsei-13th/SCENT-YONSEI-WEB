@@ -12,9 +12,11 @@ import {
   type BoothListRecord,
   categories,
   days,
+  foodTruckTypes,
   sections,
 } from './types/booth-union.type';
 import { getBoothList } from '@/app/_common/apis/booth.api';
+import { FoodTruckList } from './_components/booth-main/foodtruck-list';
 
 export default async function BoothPage() {
   const record: Partial<BoothListRecord> = {};
@@ -23,20 +25,22 @@ export default async function BoothPage() {
   await Promise.all(
     days.flatMap(day =>
       sections.flatMap(section =>
-        categories.map(async category => {
-          const key: BoothListKey = `${day}-${section}-${category}`;
-          const data = await getBoothList({
-            day,
-            section,
-            category,
-            search: '',
-          });
-          record[key] = data;
-        }),
+        categories.flatMap(category =>
+          foodTruckTypes.map(async foodType => {
+            const key: BoothListKey = `${day}-${section}-${category}-${foodType}`;
+            const data = await getBoothList({
+              day,
+              section,
+              category,
+              search: '',
+              foodType,
+            });
+            record[key] = data;
+          }),
+        ),
       ),
     ),
   );
-  console.log(record);
   return (
     <div
       id='booth-page'
@@ -49,6 +53,7 @@ export default async function BoothPage() {
         <TabBooth />
         <SearchBar />
         <BoothList record={record} />
+        <FoodTruckList record={record} />
       </main>
     </div>
   );

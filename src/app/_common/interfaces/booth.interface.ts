@@ -1,6 +1,7 @@
 import {
   Category,
   Day,
+  FoodTruckType,
   Section,
 } from '@/app/(pages)/booth/types/booth-union.type';
 
@@ -14,6 +15,8 @@ export interface FoodTruckMainInfo {
   foodTruckId: number;
   name: string;
   photo?: string;
+  foodType?: string;
+  menuNames: string[];
 }
 
 export interface Booth {
@@ -50,6 +53,7 @@ export interface BoothListParams {
   day: Day;
   section: Section;
   category: Category;
+  foodType?: FoodTruckType;
 }
 export interface BoothDetailParams {
   category: Category;

@@ -9,18 +9,24 @@ export function MenuList({ menuList }: { menuList: Menu[] | undefined }) {
         <div key={index} className='flex flex-col gap-[18px]'>
           <div className='w-full flex items-center justify-between'>
             <div className='flex-[80%] flex justify-start items-center gap-3'>
-              <Image
-                src={menu.menu_photo ?? ''}
-                alt='백양로'
-                width={52}
-                height={52}
-                className='w-13 h-13 object-cover rounded-xl bg-gray100'
-              />
+              {menu.menu_photo ? (
+                <Image
+                  src={menu.menu_photo}
+                  alt={menu.menu_name ?? ''}
+                  width={52}
+                  height={52}
+                  className='flex-shrink-0 w-13 h-13 object-cover rounded-xl bg-gray100'
+                />
+              ) : (
+                <div className='flex-shrink-0 w-13 h-13 flex items-center justify-center bg-gray100 rounded-xl'>
+                  <Utensils strokeWidth={2} className='size-6 text-point' />
+                </div>
+              )}
               <span className='text-headline-l text-black000'>
                 {menu.menu_name}
               </span>
             </div>
-            <span className='flex-[20%] text-end text-label-l text-black000'>
+            <span className='flex-shrink-0 text-end text-label-l text-black000'>
               {menu.price}원
             </span>
           </div>

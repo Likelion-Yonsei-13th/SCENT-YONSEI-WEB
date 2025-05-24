@@ -17,7 +17,7 @@ export function TabDay() {
         <button
           key={dayBtn.value}
           className={cn(
-            'px-4 py-[10px] rounded-full shadow-md cursor-pointer transition-all duration-300 bg-white text-black text-label-s',
+            'px-3 py-[10px] rounded-full shadow-md cursor-pointer transition-all duration-300 bg-white text-black text-label-l',
             dayState === dayBtn.value && 'bg-point !text-white000',
           )}
           onClick={() => setDayState(dayBtn.value)}

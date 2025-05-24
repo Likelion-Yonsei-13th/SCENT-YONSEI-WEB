@@ -6,6 +6,7 @@ import {
   sections,
   categories,
   searches,
+  foodTruckTypes,
 } from '../types/booth-union.type';
 
 export function useBoothQueryParams() {
@@ -25,6 +26,10 @@ export function useBoothQueryParams() {
     'search',
     parseAsStringLiteral(searches).withDefault(''),
   );
+  const [foodType] = useQueryState(
+    'foodType',
+    parseAsStringLiteral(foodTruckTypes).withDefault('전체'),
+  );
 
-  return { day, section, category, search };
+  return { day, section, category, search, foodType };
 }

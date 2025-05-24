@@ -8,7 +8,7 @@ import { parseAsStringLiteral, useQueryState } from 'nuqs';
 export function TabBooth() {
   const [categoryState, setCategoryState] = useQueryState(
     'category',
-    parseAsStringLiteral(categories).withDefault('all'),
+    parseAsStringLiteral(categories).withDefault('전체'),
   );
 
   return (

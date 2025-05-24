@@ -1,4 +1,9 @@
-import { Category, Day, Section } from '../types/booth-union.type';
+import {
+  Category,
+  Day,
+  FoodTruckType,
+  Section,
+} from '../types/booth-union.type';
 
 export const dayList: { label: string; value: Day }[] = [
   {
@@ -42,5 +47,20 @@ export const categoryList: { label: string; value: Category }[] = [
   {
     label: '푸드트럭',
     value: '푸드트럭',
+  },
+];
+
+export const foodTruckTypeList: { label: string; value: FoodTruckType }[] = [
+  {
+    label: '전체',
+    value: '전체',
+  },
+  {
+    label: '음식',
+    value: '음식',
+  },
+  {
+    label: '디저트',
+    value: '디저트',
   },
 ];

@@ -9,9 +9,12 @@ export type Section = (typeof sections)[number];
 export const categories = ['전체', '부스', '푸드트럭'] as const;
 export type Category = (typeof categories)[number];
 
+export const foodTruckTypes = ['전체', '음식', '디저트'] as const;
+export type FoodTruckType = (typeof foodTruckTypes)[number];
+
 export const searches = [''] as const;
 export type SearchType = (typeof searches)[number];
 
-export type BoothListKey = `${Day}-${Section}-${Category}`; // 조합 키
+export type BoothListKey = `${Day}-${Section}-${Category}-${FoodTruckType}`; // 조합 키
 
 export type BoothListRecord = Record<BoothListKey, Booth>; // Record 형태
