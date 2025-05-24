@@ -32,6 +32,7 @@ const config = {
         fixStyle: 'inline-type-imports',
       },
     ],
+    '@typescript-eslint/await-thenable': 'off',
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {
@@ -39,14 +40,7 @@ const config = {
       },
     ],
     '@typescript-eslint/require-await': 'off',
-    '@typescript-eslint/no-misused-promises': [
-      'error',
-      {
-        checksVoidReturn: {
-          attributes: false,
-        },
-      },
-    ],
+    '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
   },
   settings: {

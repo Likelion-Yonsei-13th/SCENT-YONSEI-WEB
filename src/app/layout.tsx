@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import '@/styles/globals.css';
 import '@/styles/typography.css';
 import { GlobalProvider } from './_common/providers/global-provider';
+import GoogleAnalytics from './_common/providers/google-analytics';
 
 export const metadata: Metadata = {
   title: 'Scent Of Yonsei',
@@ -30,6 +31,9 @@ export default function RootLayout({
         />
       </head>
       <body>
+        {process.env.GOOGLE_ANALYTICS_ID && (
+          <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
+        )}
         <GlobalProvider>
           <main
             id='main-layout'

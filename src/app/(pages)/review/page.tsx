@@ -1,5 +1,4 @@
 import { TopBar } from '@/app/_common/components/top-bar';
-
 import LionLogo from '@/public/svg/lion-logo.svg';
 import LikelionBrandlogo from '@/public/svg/likelion-brandlogo.svg';
 import UnderBar from '@/app/_common/components/underbar';
