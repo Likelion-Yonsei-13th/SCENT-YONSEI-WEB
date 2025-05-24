@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { TopBar } from '@/app/_common/components/top-bar';
 import { getNoticeDetail } from '@/app/_common/apis/notice.api';
-import { NoticeDetailResponse } from '@/app/_common/interfaces/notice.interface';
+import { type NoticeDetailResponse } from '@/app/_common/interfaces/notice.interface';
 import ImageModal from './_components/ImageModal';
 
 export default function NoticeDetailPage() {
@@ -22,7 +22,6 @@ export default function NoticeDetailPage() {
     const fetchDetail = async () => {
       try {
         const data = await getNoticeDetail(id as string);
-        console.log('‼공지상세데이터:', data);
 
         setNotice(data);
       } catch (error) {

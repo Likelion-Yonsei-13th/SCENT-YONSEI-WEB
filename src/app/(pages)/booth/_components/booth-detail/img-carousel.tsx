@@ -4,7 +4,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselApi,
+  type CarouselApi,
 } from '@/app/_core/components/carousel';
 import Image from 'next/image';
 import * as React from 'react';
@@ -16,7 +16,7 @@ export function ImgCarousel({
 }: {
   imagesUrl: string[] | undefined;
   boothName: string;
-  organizationName: string;
+  organizationName?: string;
 }) {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
@@ -74,7 +74,7 @@ export function ImgCarousel({
         <p className='text-label-l line-clamp-1'>{organizationName}</p>
       </span>
       {/* 그라데이션 효과 */}
-      <div className='z-10 absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-b-[20px]'></div>
+      <div className='z-10 absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-b-[20px] pointer-events-none'></div>
       {/* current, total slide count */}
       {imagesUrl && imagesUrl.length > 0 && (
         <div className='absolute top-5 right-5 px-4 py-2 flex-center bg-white/70 rounded-[20px]'>

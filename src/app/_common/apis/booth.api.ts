@@ -1,9 +1,9 @@
 'use server';
 
-import { Booth, BoothDetail } from '../interfaces/booth.interface';
+import { type Booth, type BoothDetail } from '../interfaces/booth.interface';
 import {
-  BoothListParams,
-  BoothDetailParams,
+  type BoothListParams,
+  type BoothDetailParams,
 } from '@/app/_common/interfaces/booth.interface';
 
 // booth main page all data api function - 무한 캐싱
