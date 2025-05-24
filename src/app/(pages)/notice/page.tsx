@@ -6,7 +6,7 @@ import CampusFilter from './_components/CampusFilter';
 import NoticeList from './_components/NoticeList';
 import SearchInput from './_components/SearchInput';
 import { getNoticeList } from '@/app/_common/apis/notice.api';
-import { NoticeListItem } from '@/app/_common/interfaces/notice.interface';
+import { type NoticeListItem } from '@/app/_common/interfaces/notice.interface';
 
 export default function Notice() {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
