@@ -12,7 +12,7 @@ export function TabDay() {
   );
 
   return (
-    <div className='flex-shirink-0 min-w-0 pb-8 w-full flex items-center justify-center gap-3'>
+    <div className='shrink-0 min-w-0 pb-8 w-full flex items-center justify-around gap-3'>
       {dayList.map(dayBtn => (
         <button
           key={dayBtn.value}

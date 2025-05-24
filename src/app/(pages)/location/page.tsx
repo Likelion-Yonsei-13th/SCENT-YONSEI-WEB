@@ -1,8 +1,8 @@
-import { TopBar } from '@/app/_common/components/top-bar';
 import Image from 'next/image';
 import { DropDown } from './_components/dropdown';
 import { Suspense } from 'react';
 import { MapSection } from './_components/map-section';
+import { TopBar } from '@/app/_common/components/top-bar';
 
 export default function LocationsPage() {
   return (

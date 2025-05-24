@@ -1,13 +1,12 @@
 export const revalidate = 360;
 
-import { TopBar } from '@/app/_common/components/top-bar';
 import { TabDay } from './_components/booth-main/tab-day';
 import { BoothSection } from './_components/booth-main/booth-section';
 import { TabBooth } from './_components/booth-main/tab-booth';
 import { SearchBar } from './_components/booth-main/search-bar';
 import { BoothList } from './_components/booth-main/booth-list';
 import {
-  BoothListKey,
+  type BoothListKey,
   type BoothListRecord,
   categories,
   days,
@@ -17,6 +16,7 @@ import {
 import { getBoothList } from '@/app/_common/apis/booth.api';
 import { FoodTruckList } from './_components/booth-main/foodtruck-list';
 import { Suspense } from 'react';
+import { TopBar } from '@/app/_common/components/top-bar';
 
 export default async function BoothPage() {
   const record: Partial<BoothListRecord> = {};
@@ -47,8 +47,8 @@ export default async function BoothPage() {
       className='relative w-full h-full flex flex-col items-center'
     >
       <TopBar title='부스' bgClassName='backdrop-blur-md bg-white/20' />
-      <main className='px-6 pt-30 pb-10 w-full flex flex-col overflow-y-auto scrollbar-hide scroll-smooth'>
-        <Suspense fallback={<div>Loading...</div>}>
+      <main className='px-6 pt-28 w-full flex flex-col overflow-y-auto scrollbar-hide scroll-smooth'>
+        <Suspense fallback={<></>}>
           <TabDay />
           <BoothSection />
           <TabBooth />

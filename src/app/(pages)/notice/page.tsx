@@ -42,7 +42,6 @@ export default function Notice() {
   };
 
   const handleSearch = (keyword: string) => {
-    console.log('키워드:', keyword);
     setSearchKeyword(keyword);
     if (selectedCategory) {
       fetchNotices(selectedCategory, keyword);
@@ -57,7 +56,7 @@ export default function Notice() {
   return (
     <main>
       <TopBar title='공지사항' bgClassName='bg-white/20 backdrop-blur-md p-4' />
-      <section className='p-4'>
+      <section className='p-4 size-full pt-28'>
         <CampusFilter
           selected={selectedCategory}
           onSelect={handleSelectCategory}
