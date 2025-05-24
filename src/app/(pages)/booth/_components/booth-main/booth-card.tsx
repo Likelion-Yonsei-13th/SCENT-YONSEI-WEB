@@ -11,6 +11,7 @@ export function BoothCard({ booth }: { booth: BoothMainInfo }) {
               src={booth.photo ?? '/img/booth/main-image.jpg'}
               alt={booth.name}
               fill
+              sizes='100vw'
               className='object-fill rounded-t-[10px]'
               priority
             />
@@ -19,6 +20,7 @@ export function BoothCard({ booth }: { booth: BoothMainInfo }) {
               src={'/img/booth/main-image.jpg'}
               alt={booth.name}
               fill
+              sizes='100vw'
               className='object-cover rounded-t-[10px]'
               priority
             />

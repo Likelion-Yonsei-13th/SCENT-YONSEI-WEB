@@ -1,6 +1,6 @@
 import { Booth } from '@/app/_common/interfaces/booth.interface';
 
-export const days = ['1', '2', '3'] as const;
+export const days = ['2', '3', '4'] as const;
 export type Day = (typeof days)[number];
 
 export const sections = ['백양로', '한글탑', '국제캠'] as const;

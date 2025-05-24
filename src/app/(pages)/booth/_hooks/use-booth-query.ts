@@ -12,7 +12,7 @@ import {
 export function useBoothQueryParams() {
   const [day] = useQueryState(
     'day',
-    parseAsStringLiteral(days).withDefault('1'),
+    parseAsStringLiteral(days).withDefault('2'),
   );
   const [section] = useQueryState(
     'section',

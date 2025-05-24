@@ -7,16 +7,16 @@ import {
 
 export const dayList: { label: string; value: Day }[] = [
   {
-    label: 'DAY1 28일',
-    value: '1',
-  },
-  {
-    label: 'DAY2 29일',
+    label: 'DAY2 28일',
     value: '2',
   },
   {
-    label: 'DAY3 30일',
+    label: 'DAY3 29일',
     value: '3',
+  },
+  {
+    label: 'DAY4 30일',
+    value: '4',
   },
 ];
 

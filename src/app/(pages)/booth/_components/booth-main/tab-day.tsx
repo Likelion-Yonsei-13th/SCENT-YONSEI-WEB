@@ -8,7 +8,7 @@ import { parseAsStringLiteral, useQueryState } from 'nuqs';
 export function TabDay() {
   const [dayState, setDayState] = useQueryState(
     'day',
-    parseAsStringLiteral(days).withDefault('1'),
+    parseAsStringLiteral(days).withDefault('2'),
   );
 
   return (
