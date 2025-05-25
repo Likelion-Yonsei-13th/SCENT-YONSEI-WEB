@@ -7,6 +7,37 @@ import GoogleAnalytics from './_common/providers/google-analytics';
 export const metadata: Metadata = {
   title: 'Scent Of Yonsei',
   description: 'Scent Of Yonsei Festival Website',
+  keywords: [
+    '연세대학교',
+    '연세',
+    '축제',
+    '대동제',
+    'Yonsei Festival',
+    '대학축제',
+    'Scent Of Yonsei',
+    '부스',
+    '공연',
+    '푸드트럭',
+    '멋쟁이사자처럼',
+    '동아리',
+  ],
+  openGraph: {
+    title: 'Scent Of Yonsei',
+    description: '연세대학교 대동제 공식 웹사이트',
+    url: 'https://scent-yonsei.com',
+    siteName: 'Scent Of Yonsei',
+    images: [
+      {
+        url: '/img/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Scent Of Yonsei 대동제',
+      },
+    ],
+    locale: 'ko_KR',
+    type: 'website',
+  },
+  authors: [{ name: 'LikeLion Yonsei 13th' }],
 };
 
 export default function RootLayout({

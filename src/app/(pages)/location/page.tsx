@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import { DropDown } from './_components/dropdown';
 import { Suspense } from 'react';
 import { TopBar } from '@/app/_common/components/top-bar';
+import { MapSection } from './_components/map-section';
 
 export default function LocationsPage() {
   return (
@@ -15,14 +15,7 @@ export default function LocationsPage() {
       {/* TopBar 아래 컴포넌트들 */}
       <main className='pt-30 pb-6 px-7 w-full flex flex-col scrollbar-hide scroll-smooth space-y-6'>
         {/* 지도 */}
-        <div className='relative w-full h-auto aspect-[316/221] rounded-[10px] bg-gray-300 overflow-hidden'>
-          <Image
-            src='/img/location/fullmap.png'
-            alt='전체 지도'
-            fill
-            className='object-cover'
-          />
-        </div>
+        <MapSection />
 
         {/* 주요 위치 컴포넌트 */}
         <Suspense fallback={<></>}>
