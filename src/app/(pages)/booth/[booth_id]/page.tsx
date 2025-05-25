@@ -25,9 +25,9 @@ export default async function BoothDetailPage({
         title={boothDetail.name}
         bgClassName='backdrop-blur-md bg-white/20'
       />
-      <main className='px-6 pt-37 pb-18 w-full h-full flex flex-col items-center gap-5 overflow-y-auto scrollbar-hide scroll-smooth'>
+      <main className='px-6 pt-30 pb-18 w-full h-full flex flex-col items-center gap-5 overflow-y-auto scrollbar-hide scroll-smooth'>
         <ImgCarousel
-          imagesUrl={[]}
+          imagesUrl={boothDetail.photos}
           boothName={boothDetail.name}
           organizationName={boothDetail.organization}
         />

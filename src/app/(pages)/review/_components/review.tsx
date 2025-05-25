@@ -37,9 +37,7 @@ export default function Review() {
           >
             <label>
               <textarea
-                className='w-[280px] resize-none overflow-y-auto focus:outline-none
-                placeholder: text-label-s
-                placeholder: text-gray-600'
+                className='w-[280px] resize-none overflow-y-auto focus:outline-none placeholder-gray-500 text-label-s text-black'
                 value={review}
                 onChange={e => setReview(e.target.value)}
                 rows={10}
@@ -54,7 +52,7 @@ export default function Review() {
             <button
               form='reviewForm'
               type='submit'
-              className='px-[25px] py-[10px] text-point text-[14px] leading-[24px] font-[700] rounded-[100px] border border-[#DFF4FF] bg-white hover:bg-light200 shadow-[0_0_8px_0_rgba(27,165,225,0.5)]'
+              className='px-4 py-[10px] text-point text-label-l !font-bold rounded-[100px] border border-[#DFF4FF] bg-white hover:bg-light200 shadow-[0_0_8px_0_rgba(27,165,225,0.5)]'
             >
               제출하기
             </button>

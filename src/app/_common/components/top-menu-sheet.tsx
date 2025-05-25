@@ -30,7 +30,7 @@ export default function TopMenuSheet() {
           <SheetHeader className='pt-30 pl-3 flex flex-col'>
             <SheetTitle className='bg-opacity-100 hidden' />
             <SheetDescription className='pl-2'>
-              {sheetLink.map(link => (
+              {sheetLink.map((link, index) => (
                 <span key={link.href} className='w-full flex flex-col'>
                   <Link
                     href={link.href}
@@ -38,7 +38,9 @@ export default function TopMenuSheet() {
                   >
                     {link.label}
                   </Link>
-                  <span className='w-full h-[1px] bg-point'></span>
+                  {index !== sheetLink.length - 1 && (
+                    <span className='w-full h-[1px] bg-point' />
+                  )}
                 </span>
               ))}
             </SheetDescription>
