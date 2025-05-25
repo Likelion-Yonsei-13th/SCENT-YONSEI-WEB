@@ -87,6 +87,7 @@ export default function NoticeDetailPage() {
       <TopBar
         title='공지사항'
         bgClassName='bg-[rgba(255,255,255,0.2)] backdrop-blur-md p-4'
+        hasDepth={true}
       />
 
       <div className='bg-white rounded-3xl mx-4 mt-12 p-7 shadow-xl mb-20'>
