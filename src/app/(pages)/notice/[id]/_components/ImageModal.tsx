@@ -68,7 +68,7 @@ export default function ImageModal({
         {/* 왼쪽 이동 버튼 */}
         {currentIndex > 0 && (
           <button
-            className='absolute left-2 top-1/2 -translate-y-1/2 z-10 text-white text-3xl bg-[rgb(224,246,255)]/40 w-8 h-8 rounded-full flex items-center justify-center'
+            className='absolute left-1 top-1/2 -translate-y-[40%] z-10 text-white text-opacity-60 text-[25px] bg-[rgb(224,246,255)]/40 w-8 h-8 rounded-full flex items-center justify-center'
             onClick={e => {
               e.stopPropagation();
               onPrev();
@@ -81,7 +81,7 @@ export default function ImageModal({
         {/* 오른쪽 이동 버튼 */}
         {currentIndex < images.length - 1 && (
           <button
-            className='absolute right-2 top-1/2 -translate-y-1/2 z-10 text-white text-3xl bg-[rgb(224,246,255)]/40 w-8 h-8 rounded-full flex items-center justify-center'
+            className='absolute right-1 top-1/2 -translate-y-[40%] z-10 text-white text-opacity-60 text-[25px] bg-[rgb(224,246,255)]/40 w-8 h-8 rounded-full flex items-center justify-center'
             onClick={e => {
               e.stopPropagation();
               onNext();
