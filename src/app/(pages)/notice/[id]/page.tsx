@@ -55,7 +55,7 @@ export default function NoticeDetailPage() {
     setCurrentImageIndex(prev => Math.min(prev + 1, notice.photo.length - 1));
   };
 
-  // ✅ 모달이 열릴 때 스크롤 잠금
+  // 모달이 열릴 때 스크롤 잠금
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = 'hidden';
