@@ -5,25 +5,26 @@ type CampusFilterProps = {
   onSelect: (campus: string) => void;
 };
 
-const campuses = ['블루런', '국제캠', '신촌캠'];
+const campuses = ['전체', '블루런', '국제캠', '신촌캠'];
 
 export default function CampusFilter({
   selected,
   onSelect,
 }: CampusFilterProps) {
   return (
-    <div className='flex justify-center gap-3 w-full'>
+    <div className='flex justify-center gap-2 w-full'>
       {campuses.map(campus => {
-        const isSelected = selected === campus;
+        const isSelected =
+          campus === '전체' ? selected === '' : selected === campus;
 
         return (
           <button
             key={campus}
-            onClick={() => onSelect(campus)}
+            onClick={() => onSelect(campus === '전체' ? '' : campus)}
             className={`
-              w-[150px] h-[45px] rounded-full transition
+              w-[109px] h-[42px] px-3 py-2 rounded-full transition
               text-sm leading-[18px] font-[Pretendard]
-              truncate text-center
+              truncate text-center mt-[42px]
               ${
                 isSelected
                   ? 'font-semibold bg-[rgba(7,98,173,1)] text-white'
