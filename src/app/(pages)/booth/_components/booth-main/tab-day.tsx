@@ -12,13 +12,14 @@ export function TabDay() {
   );
 
   return (
-    <div className='shrink-0 min-w-0 pb-8 w-full flex items-center justify-around gap-3'>
+    <div className='flex-shrink-0 min-w-0 pb-8 w-full flex items-center justify-around gap-3'>
       {dayList.map(dayBtn => (
         <button
           key={dayBtn.value}
           className={cn(
-            'px-3 py-[10px] rounded-full shadow-md cursor-pointer transition-all duration-300 bg-white text-black text-label-l',
-            dayState === dayBtn.value && 'bg-point !text-white000',
+            'flex-1 px-3 py-[10px] rounded-full shadow-md cursor-pointer transition-all duration-300 bg-white text-black font-normal text-label-l',
+            dayState === dayBtn.value && 'bg-point !text-white000 !font-bold',
+            'shadow-[0px_0px_8px_0px_rgba(27,165,225,0.50)]',
           )}
           onClick={() => setDayState(dayBtn.value)}
         >

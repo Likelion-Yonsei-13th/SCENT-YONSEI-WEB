@@ -1,13 +1,14 @@
 'use client';
 
 import { cn } from '@/app/_core/utils/cn';
-import { ChevronDownIcon } from 'lucide-react';
+import { ChevronDownIcon, Plus } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Image from 'next/image';
 import { useTrashLocationQueryState } from '../_hooks/use-trash-location-query-state';
 import TrashIcon from '@/public/svg/location/trash.svg';
 import WheelchairIcon from '@/public/svg/location/wheelchair.svg';
+import ImageZoomModal from '@/app/_common/components/image-zoom-modal';
 
 const locationList = [
   {
@@ -27,6 +28,7 @@ export const DropDown = ({
 }: {
   category: 'trash' | 'wheelchair';
 }) => {
+  const [isImageZoomModalOpen, setIsImageZoomModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { currentTrashLocation, handleTrashLocationChange } =
     useTrashLocationQueryState();
@@ -47,7 +49,13 @@ export const DropDown = ({
         )}
       >
         <span className='flex items-center gap-1.5'>
-          {category === 'trash' ? <TrashIcon /> : <WheelchairIcon />}
+          {category === 'trash' ? (
+            <TrashIcon />
+          ) : (
+            <span className='size-8 flex items-center justify-center'>
+              <WheelchairIcon />
+            </span>
+          )}
           <p className='text-label-l font-normal text-black000'>
             {category === 'trash' ? '쓰레기통' : '경사로'}
           </p>
@@ -150,6 +158,12 @@ export const DropDown = ({
                       height={300}
                       className='rounded-[10px] w-full h-auto object-cover aspect-[59/47]'
                     />
+                    <span
+                      className='absolute bottom-2 right-2 bg-white000 rounded-full p-2 shadow-xl cursor-pointer hover:bg-light400 border border-point transition-all duration-300'
+                      onClick={() => setIsImageZoomModalOpen(true)}
+                    >
+                      <Plus className='size-6 text-point' />
+                    </span>
                   </>
                 )}
               </div>
@@ -157,6 +171,12 @@ export const DropDown = ({
           </>
         )}
       </AnimatePresence>
+      {isImageZoomModalOpen && (
+        <ImageZoomModal
+          image={'/img/location/fullmap.png'}
+          onClose={() => setIsImageZoomModalOpen(false)}
+        />
+      )}
     </div>
   );
 };

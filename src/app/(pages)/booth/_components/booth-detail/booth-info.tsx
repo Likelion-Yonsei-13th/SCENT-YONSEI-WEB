@@ -10,7 +10,7 @@ export function BoothInfo({ boothDetail }: { boothDetail: BoothDetail }) {
     {
       icon: <Instagram />,
       label: 'insta',
-      value: boothDetail.instagram ?? '@yonsei_studentcouncil',
+      value: boothDetail.instagram ?? 'yonsei_studentcouncil',
     },
     {
       icon: <Location />,
@@ -28,7 +28,7 @@ export function BoothInfo({ boothDetail }: { boothDetail: BoothDetail }) {
       <div className='w-full h-auto flex flex-col items-start gap-1'>
         {/* instagram info */}
         <Link
-          href={`https://www.instagram.com/${boothInfoList[0].value.split('@')[1]}`}
+          href={`https://www.instagram.com/${boothInfoList[0].value}`}
           className='flex items-center gap-1 cursor-pointer'
           target='_blank'
         >

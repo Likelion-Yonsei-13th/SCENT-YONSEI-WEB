@@ -4,6 +4,7 @@ import LikelionBrandlogo from '@/public/svg/likelion-brandlogo.svg';
 import Footer from '@/app/_common/components/underbar';
 import Review from './_components/review';
 import Liked from './_components/liked';
+import Image from 'next/image';
 
 export default function ReviewPage() {
   return (
@@ -14,13 +15,17 @@ export default function ReviewPage() {
       />
       <main className='pt-14 pb-20 z-10 w-full h-full flex-1 flex flex-col items-center overflow-y-auto scrollbar-hide'>
         {/* main logo section */}
-        <section className='py-16 w-full h-full flex flex-col items-center gap-4 text-white'>
-          <div className='pt-[37.13px] pb-[49.95px]'>
+        <section className='pt-8 w-full h-full flex flex-col items-center gap-4 text-white'>
+          <div className='pt-[37.13px] pb-6'>
             <LionLogo />
           </div>
-          <div>
-            <LikelionBrandlogo />
-          </div>
+          <Image
+            src='/img/likelion-logo.png'
+            alt='likelion-brandlogo'
+            width={100}
+            height={100}
+            className='flex-shrink-0 w-[231.585px] h-[18px]'
+          />
           <div className='flex justify-center pb-[44px]'>
             <p className='text-display-m text-white'>
               멋쟁이사자처럼 연세 13기
@@ -29,7 +34,7 @@ export default function ReviewPage() {
         </section>
 
         <div>
-          <p className='pb-[72px] flex justify-center text-label-s text-white text-400 text-center'>
+          <p className='pb-12 flex justify-center text-label-s text-white text-center'>
             멋쟁이사자처럼이 올해 새롭게 대동제 웹사이트를 제작했습니다.
             <br />
             따뜻한 후기를 남겨주시면

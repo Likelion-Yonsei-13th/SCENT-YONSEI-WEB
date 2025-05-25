@@ -63,6 +63,7 @@ export function ImgCarousel({
                 src={'/img/booth/main-image.jpg'}
                 alt={`not-found-image`}
                 fill
+                sizes='100vw'
                 className='object-contain rounded-[20px]'
               />
             </div>
@@ -80,7 +81,7 @@ export function ImgCarousel({
       {imagesUrl && imagesUrl.length > 0 && (
         <div className='absolute top-5 right-5 px-4 py-2 flex-center bg-white/70 rounded-[20px]'>
           <p className='text-gray600 text-label-l'>
-            {current} / {count}
+            {current} / {imagesUrl.length}
           </p>
         </div>
       )}

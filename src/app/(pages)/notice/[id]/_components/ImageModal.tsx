@@ -65,10 +65,39 @@ export default function ImageModal({
           />
         )}
 
-        {/* 닫기 버튼
-        <button
-          className='absolute top-2 right-2 text-white text-3xl bg-black/50 rounded-full w-9 h-9 flex items-center justify-center'
-          onClick={onClose}
+        {/* 왼쪽 이동 버튼 */}
+        {currentIndex > 0 && (
+          <button
+            className='absolute left-1 top-1/2 -translate-y-[40%] z-10 text-white text-opacity-60 text-[25px] bg-[rgb(224,246,255)]/40 w-8 h-8 rounded-full flex items-center justify-center'
+            onClick={e => {
+              e.stopPropagation();
+              onPrev();
+            }}
+          >
+            ‹
+          </button>
+        )}
+
+        {/* 오른쪽 이동 버튼 */}
+        {currentIndex < images.length - 1 && (
+          <button
+            className='absolute right-1 top-1/2 -translate-y-[40%] z-10 text-white text-opacity-60 text-[25px] bg-[rgb(224,246,255)]/40 w-8 h-8 rounded-full flex items-center justify-center'
+            onClick={e => {
+              e.stopPropagation();
+              onNext();
+            }}
+          >
+            ›
+          </button>
+        )}
+
+        {/* 닫기 버튼 */}
+        {/* <button
+          className='absolute top-2 right-2 text-white text-2xl bg-black/40 w-8 h-8 rounded-full flex items-center justify-center z-10'
+          onClick={e => {
+            e.stopPropagation();
+            onClose();
+          }}
         >
           ×
         </button> */}
