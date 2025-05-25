@@ -41,12 +41,6 @@ const FestivalShowPage = async ({
           {result.data.instagram && (
             <InstagramInfoBadge instagram={result.data.instagram} />
           )}
-          {/* <div className='flex items-center gap-1'>
-            <CalendarIcon />
-            <p className='text-label-l text-gray600 !font-semibold leading-[18px]'>
-              DAY2 28일
-            </p>
-          </div> */}
           <div className='flex items-center gap-1'>
             <TimeIcon />
             <p className='text-label-l text-gray600 !font-semibold leading-[18px]'>
@@ -64,7 +58,7 @@ const FestivalShowPage = async ({
         </div>
         <hr className='border-gray300' />
         {result.data.description && (
-          <p className='text-label-l text-black000 font-normal leading-[18px]'>
+          <p className='text-label-l text-black000 font-normal leading-[18px] whitespace-pre-line'>
             {result.data.description}
           </p>
         )}
