@@ -29,25 +29,21 @@ export default function Liked() {
       });
 
       if (res.status === 201) {
-        console.log('요청 성공');
         fetchLikes();
       } else {
-        console.log('요청 실패');
       }
-    } catch {
-      console.log('전송 중 에러');
-    }
+    } catch {}
   };
 
   return (
     <div className='pt-[58px]'>
       <button
         onClick={handleLiked}
-        className='px-[25px] py-[10px] text-point text-[14px] leading-[24px] font-[700] rounded-[20px] border border-[#DFF4FF] bg-white shadow-[0_0_8px_0_rgba(27,165,225,0.5)]'
+        className='px-4 py-[10px] text-point text-label-l !font-bold rounded-[20px] border border-[#DFF4FF] bg-white shadow-[0_0_8px_0_rgba(27,165,225,0.5)]'
       >
         응원하기
         <br />
-        💙 {like}
+        ❤️ {like}
       </button>
     </div>
   );
