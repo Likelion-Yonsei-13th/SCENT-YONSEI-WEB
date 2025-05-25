@@ -237,10 +237,8 @@ const TimeBlock = ({
       style={{ height: `${height}px` }}
     >
       <div className='flex flex-col gap-4 items-center justify-center'>
-        <p className='text-headline-m text-black000 !font-semibold'>
-          {show.title}
-        </p>
-        <p className='text-label-s text-main100'>상세 정보</p>
+        <p className='text-headline-l text-black000 !font-bold'>{show.title}</p>
+        <p className='text-label-l text-main100'>상세 정보</p>
         <div className='flex items-center justify-center gap-1'>
           <p className='text-label-s text-gray500'>{show.start_at}</p>
           <p className='text-label-s text-gray500'>~</p>
