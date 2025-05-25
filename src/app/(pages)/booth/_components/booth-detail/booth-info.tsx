@@ -6,7 +6,6 @@ import { BoothDetail } from '@/app/_common/interfaces/booth.interface';
 import { FileText } from 'lucide-react';
 
 export function BoothInfo({ boothDetail }: { boothDetail: BoothDetail }) {
-  console.log(boothDetail.instagram);
   const boothInfoList = [
     {
       icon: <Instagram />,
