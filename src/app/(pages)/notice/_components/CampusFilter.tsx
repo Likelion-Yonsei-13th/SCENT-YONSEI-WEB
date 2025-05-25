@@ -12,7 +12,7 @@ export default function CampusFilter({
   onSelect,
 }: CampusFilterProps) {
   return (
-    <div className='flex justify-center gap-1 w-full'>
+    <div className='flex justify-center gap-2 w-full'>
       {campuses.map(campus => {
         const isSelected =
           campus === '전체' ? selected === '' : selected === campus;
@@ -22,7 +22,7 @@ export default function CampusFilter({
             key={campus}
             onClick={() => onSelect(campus === '전체' ? '' : campus)}
             className={`
-              w-[110px] h-[42px] px-3 py-2 rounded-full transition
+              w-[109px] h-[42px] px-3 py-2 rounded-full transition
               text-sm leading-[18px] font-[Pretendard]
               truncate text-center mt-[42px]
               ${
