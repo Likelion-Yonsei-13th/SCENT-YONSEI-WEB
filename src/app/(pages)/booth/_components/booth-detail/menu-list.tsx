@@ -22,7 +22,7 @@ export function MenuList({ menuList }: { menuList: Menu[] | undefined }) {
                   <Utensils strokeWidth={2} className='size-6 text-point' />
                 </div>
               )}
-              <span className='text-headline-l text-black000'>
+              <span className='text-headline-l text-black000 whitespace-pre-line'>
                 {menu.menu_name}
               </span>
             </div>

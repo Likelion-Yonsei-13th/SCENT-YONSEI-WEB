@@ -6,7 +6,8 @@ import GoogleAnalytics from './_common/providers/google-analytics';
 
 export const metadata: Metadata = {
   title: 'Scent Of Yonsei',
-  description: 'Scent Of Yonsei Festival Website',
+  description:
+    '연세대학교 대동제 공식 웹사이트 - 부스 정보, 공연 일정, 축제 안내',
   keywords: [
     '연세대학교',
     '연세',
@@ -22,20 +23,34 @@ export const metadata: Metadata = {
     '동아리',
   ],
   openGraph: {
-    title: 'Scent Of Yonsei',
-    description: '연세대학교 대동제 공식 웹사이트',
+    title: 'Scent Of Yonsei | 연세대학교 대동제',
+    description:
+      '연세대학교 대동제 공식 웹사이트 - 부스 정보, 공연 일정, 축제 안내',
     url: 'https://scent-yonsei.com',
     siteName: 'Scent Of Yonsei',
     images: [
       {
-        url: '/img/og-image.jpg',
+        url: 'https://scent-yonsei.com/img/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Scent Of Yonsei 대동제',
+        alt: 'Scent Of Yonsei 연세대학교 대동제',
+        type: 'image/jpeg',
       },
     ],
     locale: 'ko_KR',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Scent Of Yonsei | 연세대학교 대동제',
+    description:
+      '연세대학교 대동제 공식 웹사이트 - 부스 정보, 공연 일정, 축제 안내',
+    images: ['https://scent-yonsei.com/img/og-image.jpg'],
+    creator: '@YonseiUniv',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   authors: [{ name: 'LikeLion Yonsei 13th' }],
 };
