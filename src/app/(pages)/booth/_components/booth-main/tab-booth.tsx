@@ -18,8 +18,9 @@ export function TabBooth() {
           key={category.value}
           className={cn(
             'px-4 py-[10px] rounded-[100px] shadow-md cursor-pointer transition-all duration-300',
+            'shadow-[0px_0px_8px_0px_rgba(27,165,225,0.50)]',
             categoryState === category.value
-              ? 'bg-point !text-white000 text-label-l'
+              ? 'bg-point !text-white000 text-headline-m'
               : ' bg-white text-black text-label-l',
           )}
           onClick={() => setCategoryState(category.value)}

@@ -47,8 +47,9 @@ export function FoodTruckList({
             key={type.value}
             className={cn(
               'transition-all duration-300',
-              ' text-gray500 cursor-pointer',
-              foodTruckType === type.value && 'text-point',
+              ' !text-gray500 cursor-pointer',
+              foodTruckType === type.value && '!text-point',
+              'text-headline-l',
             )}
             onClick={() => setFoodTruckType(type.value)}
           >
@@ -56,7 +57,7 @@ export function FoodTruckList({
           </button>
         ))}
       </nav>
-      {filteredFoodTruckData.map(foodtruck => (
+      {filteredFoodTruckData.map((foodtruck, index) => (
         <div
           key={foodtruck.foodTruckId}
           className='w-full h-auto flex flex-col gap-[18px]'
@@ -79,7 +80,9 @@ export function FoodTruckList({
               ))}
             </span>
           </div>
-          <div className='w-full h-[1px] bg-gray300' />
+          {index !== filteredFoodTruckData.length - 1 && (
+            <div className='w-full h-[1px] bg-gray300' />
+          )}
         </div>
       ))}
     </section>
