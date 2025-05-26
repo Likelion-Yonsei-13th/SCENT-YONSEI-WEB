@@ -1,8 +1,13 @@
 const getCurrentTime = () => {
   const currentTime = new Date();
 
-  const currentHour = currentTime.getHours();
-  const currentMinute = currentTime.getMinutes();
+  // Get Seoul time
+  const seoulTime = new Date(
+    currentTime.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }),
+  );
+
+  const currentHour = seoulTime.getHours();
+  const currentMinute = seoulTime.getMinutes();
 
   // for test purpose
   // return `16:${currentMinute}`;
@@ -11,13 +16,23 @@ const getCurrentTime = () => {
 
 const getCurrentMonth = () => {
   const currentTime = new Date();
-  const currentMonth = currentTime.getMonth();
+
+  // Get Seoul time
+  const seoulTime = new Date(
+    currentTime.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }),
+  );
+  const currentMonth = seoulTime.getMonth();
   return currentMonth;
 };
 
 const getCurrentDay = () => {
   const currentTime = new Date();
-  const currentDay = currentTime.getDate();
+
+  // Get Seoul time
+  const seoulTime = new Date(
+    currentTime.toLocaleString('en-US', { timeZone: 'Asia/Seoul' }),
+  );
+  const currentDay = seoulTime.getDate();
 
   // for test purpose
   // return 29;
