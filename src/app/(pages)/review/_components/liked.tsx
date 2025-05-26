@@ -43,7 +43,7 @@ export default function Liked() {
       >
         응원하기
         <br />
-        ❤️ {like}
+        💙 {like}
       </button>
     </div>
   );
