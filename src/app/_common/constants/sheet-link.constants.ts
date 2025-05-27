@@ -9,11 +9,11 @@ export const sheetLink = [
   },
   {
     href: '/booth',
-    label: '부스정보',
+    label: '부스 정보',
   },
   {
     href: '/festival',
-    label: '공연정보',
+    label: '공연 정보',
   },
   {
     href: '/location',

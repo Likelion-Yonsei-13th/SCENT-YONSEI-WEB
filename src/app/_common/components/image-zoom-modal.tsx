@@ -3,6 +3,7 @@
 import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { XIcon } from 'lucide-react';
+import { cn } from '@/app/_core/utils/cn';
 
 type Props = {
   image: string;
@@ -32,24 +33,27 @@ export default function ImageZoomModal({ image, onClose }: Props) {
     <div
       ref={backdropRef}
       onClick={handleBackdropClick}
-      className='fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center'
+      className={cn('fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex justify-center py-4 overflow-y-auto')}
     >
-      <div className='relative w-[90%] h-[80vh]'>
+      <div
+        onClick={onClose}
+        className={cn('relative w-[90%] h-fit my-auto')}
+      >
         {image && (
           <Image
             src={image}
             alt='공지 이미지'
-            fill
-            sizes='50vw'
-            className='rounded-md min-w-full min-h-full'
+            width={318}
+            height={1131}
+            className={cn('w-full h-auto object-contain')}
           />
         )}
-        <button
+        {/* <button
           className='z-10 absolute top-2 right-2 text-point size-10 rounded-full bg-white/50 cursor-pointer'
           onClick={onClose}
         >
           <XIcon className='size-10' />
-        </button>
+        </button> */}
       </div>
     </div>
   );
