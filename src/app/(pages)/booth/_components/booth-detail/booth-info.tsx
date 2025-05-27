@@ -2,7 +2,7 @@ import Instagram from '@/public/svg/booth/instagram.svg';
 import Location from '@/public/svg/booth/location.svg';
 import Watch from '@/public/svg/booth/watch.svg';
 import Link from 'next/link';
-import { BoothDetail } from '@/app/_common/interfaces/booth.interface';
+import { type BoothDetail } from '@/app/_common/interfaces/booth.interface';
 import { FileText } from 'lucide-react';
 
 export function BoothInfo({ boothDetail }: { boothDetail: BoothDetail }) {
@@ -51,12 +51,6 @@ export function BoothInfo({ boothDetail }: { boothDetail: BoothDetail }) {
         </div>
 
         {/* time info */}
-        <div className='flex items-center gap-1 cursor-pointer'>
-          <span className='size-5 flex items-center justify-center'>
-            <Watch />
-          </span>
-          <p className='text-label-l text-gray600'>{boothInfoList[2].value}</p>
-        </div>
       </div>
 
       <div className='w-full h-[1px] bg-gray300' />
