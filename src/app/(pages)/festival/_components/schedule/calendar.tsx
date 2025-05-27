@@ -17,7 +17,6 @@ export const Calendar = ({ day2, day3, day4 }: ShowData) => {
   const [currentLocation, setCurrentLocation] =
     React.useState<keyof typeof timeTable>('언기도');
 
-  const timeRange = timeTable[currentLocation]!;
 
   const tabs: (keyof typeof timeTable)[] = React.useMemo(() => {
     if (currentDay === '2') return ['언기도'];
@@ -30,6 +29,16 @@ export const Calendar = ({ day2, day3, day4 }: ShowData) => {
       return day3.filter(show => show.section === currentLocation);
     return day4.filter(show => show.section === currentLocation);
   }, [currentDay, day2, day3, day4, currentLocation]);
+
+  const timeRange = useMemo(() => {
+    if (rawShows.length === 0) return timeTable[currentLocation];
+    const firstShow = rawShows[0];
+    const lastShow = rawShows[rawShows.length - 1];
+    return {
+      startTime: firstShow.start_at,
+      endTime: lastShow.finish_at,
+    };
+  }, [rawShows, currentLocation]);
 
   const preProcessedShows = React.useMemo(() => {
     const startMinutes = parseTime(timeRange.startTime);
