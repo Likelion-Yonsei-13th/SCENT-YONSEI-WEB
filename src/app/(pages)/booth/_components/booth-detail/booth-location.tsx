@@ -1,7 +1,12 @@
-import Image from 'next/image';
+'use client';
+
 import { type Section } from '@/app/(pages)/booth/types/booth-union.type';
+import ImageZoomModal from '@/app/_common/components/image-zoom-modal';
+import { Plus } from 'lucide-react';
+import { useState } from 'react';
 
 export function BoothLocation({ section }: { section: Section }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const imageUrl = {
     백양로: '/img/booth/baekyang-section.jpg',
     한글탑: '/img/booth/hangeul-section.jpg',
@@ -16,7 +21,19 @@ export function BoothLocation({ section }: { section: Section }) {
           alt={section}
           className='object-cover rounded-[10px] w-full h-full'
         />
+        <span
+          className='absolute bottom-2 right-2 bg-white000 rounded-full p-2 shadow-xl cursor-pointer hover:bg-light400 border border-point transition-all duration-300'
+          onClick={() => setIsModalOpen(true)}
+        >
+          <Plus className='size-6 text-point' />
+        </span>
       </div>
+      {isModalOpen && imageUrl[section] && (
+        <ImageZoomModal
+          image={imageUrl[section]}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
     </section>
   );
 }
