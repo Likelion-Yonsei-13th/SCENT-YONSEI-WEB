@@ -6,6 +6,7 @@ import { TopBar } from '@/app/_common/components/top-bar';
 import { getNoticeDetail } from '@/app/_common/apis/notice.api';
 import { type NoticeDetailResponse } from '@/app/_common/interfaces/notice.interface';
 import ImageModal from './_components/ImageModal';
+import { Loader } from '@/app/_common/components/loader';
 
 export default function NoticeDetailPage() {
   const { id } = useParams();
@@ -68,12 +69,21 @@ export default function NoticeDetailPage() {
     };
   }, [isModalOpen]);
 
-  if (!notice)
+  if (loading) {
+    return (
+      <div className='p-6 size-full flex items-center justify-center text-sm text-gray-500'>
+        <Loader />
+      </div>
+    );
+  }
+
+  if (!notice) {
     return (
       <div className='text-sm text-[rgba(255,255,255,1)] text-center py-10'>
         공지사항을 찾을 수 없습니다.
       </div>
     );
+  }
 
   const formatDate = (iso: string) => {
     const date = new Date(iso);
