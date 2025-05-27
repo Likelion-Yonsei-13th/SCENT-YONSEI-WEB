@@ -9,11 +9,10 @@ export function MapSection() {
 
   return (
     <div className='relative w-full h-auto aspect-[316/221] rounded-[10px] bg-gray-300 overflow-hidden'>
-      <Image
+      <img
         src='/img/location/fullmap.png'
         alt='전체 지도'
-        fill
-        className='object-cover'
+        className='object-cover w-full h-full'
       />
       <span
         className='absolute bottom-2 right-2 bg-white000 rounded-full p-2 shadow-xl cursor-pointer hover:bg-light400 border border-point transition-all duration-300'

@@ -33,12 +33,11 @@ export default function ImageZoomModal({ image, onClose }: Props) {
     <div
       ref={backdropRef}
       onClick={handleBackdropClick}
-      className={cn('fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex justify-center py-4 overflow-y-auto')}
+      className={cn(
+        'fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex justify-center py-4 overflow-y-auto',
+      )}
     >
-      <div
-        onClick={onClose}
-        className={cn('relative w-[90%] h-fit my-auto')}
-      >
+      <div onClick={onClose} className={cn('relative w-[90%] h-fit my-auto')}>
         {image && (
           <Image
             src={image}

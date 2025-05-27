@@ -43,12 +43,10 @@ export function ImgCarousel({
           <CarouselItem key={index}>
             <div className='relative w-full h-auto flex aspect-[3/4] items-center justify-center p-6 bg-gray200 rounded-[20px]'>
               {url && (
-                <Image
+                <img
                   src={url}
                   alt={`booth-image-${index}`}
-                  fill
-                  sizes='100vw'
-                  className='object-contain rounded-[20px]'
+                  className='object-contain rounded-[20px] w-full h-full'
                 />
               )}
             </div>
@@ -59,12 +57,10 @@ export function ImgCarousel({
         {imagesUrl?.length === 0 && (
           <CarouselItem>
             <div className='relative w-full h-auto flex aspect-[3/4] items-center justify-center p-6 bg-gray500 rounded-[20px]'>
-              <Image
+              <img
                 src={'/img/booth/main-image.jpg'}
                 alt={`not-found-image`}
-                fill
-                sizes='100vw'
-                className='object-contain rounded-[20px]'
+                className='object-contain rounded-[20px] w-full h-full'
               />
             </div>
           </CarouselItem>

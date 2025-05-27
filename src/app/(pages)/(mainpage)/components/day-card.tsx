@@ -22,12 +22,10 @@ export default function DayCard({ image, texts }: DayCardProps) {
             bg-[linear-gradient(163deg,rgba(11,205,248,0.30)_2.1%,rgba(114,199,255,0.18)_47.96%,rgba(0,153,255,0.30)_93.81%)]
             '
     >
-      <Image
+      <img
         src={image}
         alt='카드 이미지'
         className='w-[128px] h-[107px] object-contain'
-        width={128}
-        height={107}
       />
 
       <div className='text-center flex flex-col items-center'>

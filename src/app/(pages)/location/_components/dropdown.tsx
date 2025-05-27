@@ -137,11 +137,9 @@ export const DropDown = ({
                         </button>
                       ))}
                     </div>
-                    <Image
+                    <img
                       src={currentTrashLocationImage}
                       alt={currentTrashLocation}
-                      width={300}
-                      height={300}
                       className='rounded-[10px] w-full h-auto object-cover aspect-[59/47]'
                     />
                   </>
@@ -151,11 +149,9 @@ export const DropDown = ({
                       <span className='bg-[#FF7F7F] w-6 h-2 rounded-[100px]' />
                       <span className='text-label-s text-black000'>경사로</span>
                     </span>
-                    <Image
+                    <img
                       src={'/img/location/fullmap.png'}
                       alt={'경사로 이미지'}
-                      width={300}
-                      height={300}
                       className='rounded-[10px] w-full h-auto object-cover aspect-[59/47]'
                     />
                     <span

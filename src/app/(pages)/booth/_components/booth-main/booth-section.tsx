@@ -67,13 +67,11 @@ export function BoothSection() {
       </span>
       {imageUrl ? (
         <div className='relative w-full h-auto flex rounded-[10px] bg-gray300 aspect-[159/127]'>
-          <Image
+          <img
             src={imageUrl ?? ''}
             alt='백양로'
-            fill
             sizes='100vw'
-            className='object-cover rounded-[10px]'
-            priority
+            className='object-cover rounded-[10px] w-full h-auto aspect-[159/127]'
           />
           <span
             className='absolute bottom-2 right-2 bg-white000 rounded-full p-2 shadow-xl cursor-pointer hover:bg-light400 border border-point transition-all duration-300'
