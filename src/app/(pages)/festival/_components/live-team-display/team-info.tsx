@@ -16,12 +16,10 @@ export const ShowInfo = ({
       <div className='flex flex-col items-center justify-center gap-2.5'>
         <div className='relative size-[68px] border-1 border-white000 rounded-full overflow-hidden flex items-center justify-center'>
           {photo ? (
-            <Image
+            <img
               src={photo}
               alt={title}
-              width={68}
-              height={68}
-              className='object-contain'
+              className='object-contain size-[68px]'
             />
           ) : (
             <div className='size-full bg-[#D9D9D9] rounded-full' />

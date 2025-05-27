@@ -1,28 +1,21 @@
 import Link from 'next/link';
-import { BoothMainInfo } from '@/app/_common/interfaces/booth.interface';
-import Image from 'next/image';
+import { type BoothMainInfo } from '@/app/_common/interfaces/booth.interface';
 export function BoothCard({ booth }: { booth: BoothMainInfo }) {
   return (
     <Link href={`/booth/${booth.boothId}`}>
       <li className='w-full h-49 flex flex-col rounded-[10px] shadow-md hover:scale-105 transition-all duration-300'>
         <div className='relative w-full h-[130px] bg-main000/70 rounded-t-[10px]'>
           {booth.photo ? (
-            <Image
+            <img
               src={booth.photo ?? '/img/booth/main-image.jpg'}
               alt={booth.name}
-              fill
-              sizes='100vw'
-              className='object-fill rounded-t-[10px]'
-              priority
+              className='object-cover rounded-t-[10px] w-full h-full'
             />
           ) : (
-            <Image
+            <img
               src={'/img/booth/main-image.jpg'}
               alt={booth.name}
-              fill
-              sizes='100vw'
-              className='object-cover rounded-t-[10px]'
-              priority
+              className='object-cover rounded-t-[10px] w-full h-full'
             />
           )}
         </div>
