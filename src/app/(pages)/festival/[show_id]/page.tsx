@@ -3,6 +3,7 @@ import { LocationIcon, TimeIcon } from '../_assets/icons';
 import { InstagramInfoBadge } from './_components/instagram-info-badge';
 import { TopBar } from '@/app/_common/components/top-bar';
 import { ImgCarousel } from '../../booth/_components/booth-detail/img-carousel';
+import { parseTime } from '../_utils/time';
 
 export const revalidate = 3600;
 
@@ -24,6 +25,9 @@ const FestivalShowPage = async ({
   const { show_id } = await params;
 
   const result = await festivalRepository.getShowDetail(show_id);
+
+  console.log('start_at', result.data.start_at);
+  console.log('finish_at', result.data.finish_at);
 
   return (
     <div className='flex flex-col gap-5 size-full items-center justify-start pt-28 px-6'>
