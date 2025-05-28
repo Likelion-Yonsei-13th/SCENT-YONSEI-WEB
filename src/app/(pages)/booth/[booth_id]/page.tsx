@@ -5,13 +5,52 @@ import { BoothLocation } from '../_components/booth-detail/booth-location';
 import { MenuList } from '../_components/booth-detail/menu-list';
 
 import { getBoothDetail } from '@/app/_common/apis/booth.api';
+import { getBoothList } from '@/app/_common/apis/booth.api';
+import {
+  type BoothListKey,
+  type BoothListRecord,
+  categories,
+  days,
+  foodTruckTypes,
+  sections,
+} from '../types/booth-union.type';
 
 export const revalidate = 3600;
 
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  return [];
+  const record: Partial<BoothListRecord> = {};
+
+  // 모든 조합 부스 데이터 Promise 객체 생성
+  await Promise.all(
+    days.flatMap(day =>
+      sections.flatMap(section =>
+        categories.flatMap(category =>
+          foodTruckTypes.map(async foodType => {
+            const key: BoothListKey = `${day}-${section}-${category}-${foodType}`;
+            const data = await getBoothList({
+              day,
+              section,
+              category,
+              search: '',
+              foodType,
+            });
+            record[key] = data;
+          }),
+        ),
+      ),
+    ),
+  );
+
+  const allIds = Object.values(record).flatMap(data => {
+    const boothIds = data?.booth?.map(b => b.boothId.toString()) ?? [];
+    return [...boothIds];
+  });
+
+  const uniqueIds = Array.from(new Set(allIds));
+
+  return uniqueIds.map(booth_id => ({ booth_id }));
 }
 
 export default async function BoothDetailPage({
