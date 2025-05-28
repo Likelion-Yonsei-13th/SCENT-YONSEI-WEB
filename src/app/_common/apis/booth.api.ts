@@ -50,8 +50,7 @@ export async function getBoothDetail(
       `${process.env.NEXT_PUBLIC_API_URL}/booth/${booth_id}?category=${params.category}`,
       {
         method: 'GET',
-        cache: 'force-cache',
-        next: { revalidate: false },
+        cache: 'no-store',
         headers: {
           'Content-Type': 'application/json',
         },
