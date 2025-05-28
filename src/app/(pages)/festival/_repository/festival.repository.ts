@@ -42,8 +42,8 @@ class FestivalRepository {
     const response = await fetchInstance({
       url: `/show/${showId}`,
       method: 'GET',
+      cache: 'no-store',
       next: {
-        revalidate: Infinity,
         tags: [festivalCacheKey, showId],
       },
     });
